@@ -8,9 +8,9 @@
 function get_categories($limit = "") {
     include "connect.php";
     if($limit) {
-        $sql = "SELECT * FROM categories ORDER BY datetime LIMIT 3 ";
+        $sql = "SELECT * FROM categories ORDER BY datetime DESC LIMIT 3 ";
     }else {
-        $sql = "SELECT * FROM categories ORDER BY datetime ";
+        $sql = "SELECT * FROM categories ORDER BY datetime DESC";
     }
     try {
         $result = $con->query($sql);

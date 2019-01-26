@@ -134,3 +134,6 @@ hr {
 .main-area div.table-responsive h4 {
     margin-bottom: 20px;
 }
+.main-area div.table-responsive h4 span {
+    font-size: 17px;
+}
