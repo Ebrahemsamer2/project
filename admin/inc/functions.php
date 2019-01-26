@@ -5,9 +5,13 @@
 */
 
 // Categories Functions
-function get_categories() {
+function get_categories($limit = "") {
     include "connect.php";
-    $sql = "SELECT * FROM categories";
+    if($limit) {
+        $sql = "SELECT * FROM categories ORDER BY datetime LIMIT 3 ";
+    }else {
+        $sql = "SELECT * FROM categories ORDER BY datetime ";
+    }
     try {
         $result = $con->query($sql);
         return $result;
@@ -37,6 +41,22 @@ function insert_post($title, $content, $category, $tags, $excerpt,$author, $imag
     }catch(Exception $e) {
         echo "Error: ". $e->getMessage() . '\n';
         return false;
+    }
+}
+
+function get_posts($limit = "") {
+    include "connect.php";
+    if($limit) {
+        $sql = "SELECT * FROM posts ORDER BY datetime LIMIT 3 ";
+    }else {
+        $sql = "SELECT * FROM posts ORDER BY datetime";
+    }
+    try {
+        $result = $con->query($sql);
+        return $result;
+    }catch(Exception $e) {
+        echo "Error: ". $e->getMessage() . '\n';
+        return array();
     }
 }
 

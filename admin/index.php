@@ -17,39 +17,56 @@ $dashboard = "active";
                 <div class='row'>
                     <div class="col-sm-6">
                         <div class="table-responsive">
+                            <h4>Recent Posts</h4>
                             <table class="table table-striped table-hover table-dark">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Author</th>
+                                        <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $no = 0; ?>
+                                    <?php foreach(get_posts(3) as $post): $no++; ?>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
+                                        <th scope="row"><?php echo $no; ?></th>
+                                        <td><?php echo $post['title']; ?></td>
+                                        <td><?php echo $post['author']; ?></td>
+                                        <td>Edit / Delete</td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        
+                        <div class="table-responsive">
+                            <h4>Recent Categories</h4>
+                            <table class="table table-striped table-hover table-dark">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Creater Name</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $no = 0; ?>
+                                    <?php foreach(get_categories(3) as $category): ?>
+                                    <tr>
+                                        <?php $no++; ?>
+                                        <th scope="row"><?php echo $no; ?></th>
+                                        <td><?php echo $category['name']; ?></td>
+                                        <td><?php echo $category['creater_name']; ?></td>
+                                        <td>Edit / Delete</td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
