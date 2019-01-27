@@ -1,7 +1,7 @@
 <?php 
 $page_title = "New Post";
 include "inc/init.php"; 
-$addnewpost = "active"; ?>
+$posts = "active"; ?>
 
 <?php 
     $title = "";

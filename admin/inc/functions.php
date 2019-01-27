@@ -47,9 +47,9 @@ function insert_post($title, $content, $category, $tags, $excerpt,$author, $imag
 function get_posts($limit = "") {
     include "connect.php";
     if($limit) {
-        $sql = "SELECT * FROM posts ORDER BY datetime LIMIT 3 ";
+        $sql = "SELECT * FROM posts ORDER BY datetime DESC LIMIT 3 ";
     }else {
-        $sql = "SELECT * FROM posts ORDER BY datetime";
+        $sql = "SELECT * FROM posts ORDER BY datetime DESC";
     }
     try {
         $result = $con->query($sql);

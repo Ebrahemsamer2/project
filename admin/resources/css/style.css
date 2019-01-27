@@ -137,3 +137,23 @@ hr {
 .main-area div.table-responsive h4 span {
     font-size: 17px;
 }
+
+
+/* Posts Style */
+
+.posts {
+    margin-top: 20px;
+}
+.posts table {
+    margin-top: 20px;
+}
+.posts table tbody tr.hide {
+    transition: .5s ease-in-out;
+    display: none;
+}
+.posts div a.show-more {
+    text-decoration: none;
+    margin: 10px auto;
+    margin-left: 20px;
+    color: #137e9e;
+}

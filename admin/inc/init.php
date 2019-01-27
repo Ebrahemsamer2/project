@@ -3,7 +3,7 @@ include "header.php";
 include "navbar.php";
 include "functions.php";
 
-$addnewpost = "";
+$posts = "";
 $dashboard = "";
 $tags = "";
 $categories = "";
