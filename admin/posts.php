@@ -18,6 +18,8 @@ $posts = "active";
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Title</th>
+                                <th scope="col">Content</th>
+                                <th scope="col">Image</th>
                                 <th scope="col">Author</th>
                                 <th scope="col">Actions</th>
                             </tr>
@@ -39,19 +41,33 @@ $posts = "active";
                             ?>
                                 <th scope="row"><?php echo $no; ?></th>
                                 <td title='<?php echo $post["title"]; ?>'><?php
-                                if(strlen($post['title']) > 40) {
-                                    echo substr($post['title'],0,40) . '...';
+                                if(strlen($post['title']) > 30) {
+                                    echo substr($post['title'],0,30) . '...';
                                 }else {
                                     echo $post['title']; 
                                 }
-                                    ?></td>
+                                ?></td>
+                                <td><?php
+                                if(strlen($post['content']) > 100) {
+                                    echo substr($post['content'],0,100) . '...';
+                                }else {
+                                    echo $post['title']; 
+                                }
+                                ?></td>
+                                <td>
+                                    <img width='100' src="uploads/<?php echo $post['image']; ?>" alt="">
+                                </td>
                                 <td><?php echo $post['author']; ?></td>
-                                <td>Edit / Delete</td>
+                                <td class='action-links'><a href='post.php?id=<?php echo $post["id"]; ?>' class='btn btn-info btn-sm'>Edit</a>
+                                <form action="deletepost.php" method='POST'>
+                                    <input class='btn btn-danger btn-sm' type='submit' value="Delete" />
+                                </form>
+                                </td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
-                    <a style="float:right;margin-bottom:10px;" class="btn btn-primary" href="addnewpost.php"><i class='fa fa-plus'></i> Add New Post</a>
+                    <a style="float:right;margin-bottom:10px;" class="btn btn-primary" href="post.php"><i class='fa fa-plus'></i> Add New Post</a>
                     <a href="" class='show-more'>show more <i class='fa fa-angle-down'></i></a>                        
                 </div>
             </div>

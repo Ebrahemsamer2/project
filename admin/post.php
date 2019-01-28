@@ -63,6 +63,15 @@ $posts = "active"; ?>
             }
         }
     }
+    else if(isset( $_GET['id'])) {
+        $id = filter_input(INPUT_GET,'id',FILTER_SANITIZE_NUMBER_INT);
+        $post = get_posts("",$id);
+
+        $title = $post['title'];
+        $content = $post['content'];
+        $tags = $post['tags'];
+        $excerpt = $post['excerpt'];
+    }
 ?>
 
 <div class="container-fluid">
@@ -83,7 +92,7 @@ $posts = "active"; ?>
                         }
                     }
                 ?>
-                 <h3>Add New Post</h3>
+                <h3><?php if(isset( $_GET['id'])) { echo "Edit Post"; } else { echo "Add New Post";}?></h3>
                  <?php 
                         if(! session_id()){
                             session_start();
@@ -100,7 +109,7 @@ $posts = "active"; ?>
                             $_SESSION['success_msg'] = "";
                         }
                  ?>
-                 <form action="addnewpost.php" method="POST" enctype="multipart/form-data" >
+                 <form action="post.php" method="POST" enctype="multipart/form-data" >
                     <div class="form-group">
                         <input value="<?php echo $title; ?>" class="form-control" type="text" placeholder="Post Title" required autocomplete="off" name="title">
                     </div>
@@ -112,10 +121,16 @@ $posts = "active"; ?>
                             <?php 
                                 foreach(get_categories() as $category):
                                     echo "<option value='{$category['name']}' ";
-                                    if($category['name'] === "Uncategorized"){
-                                        echo "selected >";
-                                    }else {
-                                        echo ">";
+                                    if(isset( $_GET['id'])) {
+                                        if($post['category'] === $category['name']){
+                                            echo "selected >";
+                                        }
+                                    } else {
+                                        if($category['name'] === "Uncategorized"){
+                                            echo "selected >";
+                                        }else {
+                                            echo ">";
+                                        }
                                     }
                                     echo $category['name'];
                                     echo "</option>";
@@ -129,10 +144,24 @@ $posts = "active"; ?>
                     <div class="form-group">
                         <input class="form-control" type="text" placeholder="Tags ( Optional ) separate tags with ( , ) " autocomplete="off" name="tags" value="<?php echo $tags; ?>">
                     </div>
+                    <?php 
+                    if(isset( $_GET['id'])) {
+                        if(! empty($post['image'])) { ?>
+                        <div class='post-img' style="margin-bottom: 10px;">
+                            <label for="img">Post Image: </label>
+                            <img width="100" src="uploads/<?php echo $post['image']; ?>" alt="post thumbnail">
+                        </div>
+                    <?php   }
+                    }
+                    ?>
                     <div class="form-group">  
                         <input class="form-control" type="file" name="image">
                     </div>
+                    <?php if(isset( $_GET['id'])) {
+                        echo '<input value="Update Post" name="addpost" style="float: right" type="submit" class="btn btn-primary">' ;
+                    }else { ?>
                     <input value="Add Post" name="addpost" style="float: right" type="submit" class="btn btn-primary">
+                    <?php  } ?>
                 </form>
             </div>
         </div>

@@ -157,3 +157,13 @@ hr {
     margin-left: 20px;
     color: #137e9e;
 }
+
+.posts table tbody td {
+    font-size: 15px;
+}
+.posts table tbody td.action-links {
+    width: 130px;
+}
+.posts table tbody td.action-links form {
+    display: inline;
+}

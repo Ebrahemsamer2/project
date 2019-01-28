@@ -44,16 +44,26 @@ function insert_post($title, $content, $category, $tags, $excerpt,$author, $imag
     }
 }
 
-function get_posts($limit = "") {
+function get_posts($limit = "",$id = "") {
     include "connect.php";
     if($limit) {
         $sql = "SELECT * FROM posts ORDER BY datetime DESC LIMIT 3 ";
+    }else if($id){
+        $sql = "SELECT * FROM posts WHERE id = ? ";
+        
     }else {
         $sql = "SELECT * FROM posts ORDER BY datetime DESC";
     }
     try {
-        $result = $con->query($sql);
-        return $result;
+        if($id) {
+            $result = $con->prepare($sql);
+            $result->bindValue(1,$id,PDO::PARAM_INT);
+            $result->execute();
+            return $result->fetch(PDO::FETCH_ASSOC) ;
+        }else {
+            $result = $con->query($sql);
+            return $result;
+        }
     }catch(Exception $e) {
         echo "Error: ". $e->getMessage() . '\n';
         return array();
