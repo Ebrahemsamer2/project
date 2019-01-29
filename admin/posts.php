@@ -11,6 +11,22 @@ $posts = "active";
         </div>
         <div class='col-sm'>
             <div class='posts'>
+            <?php 
+                if(! session_id()){
+                    session_start();
+                }
+                if(isset($_SESSION['error_msg']) && ! empty($_SESSION['error_msg'])) {
+                    echo "<div class='alert alert-danger'>";
+                    echo $_SESSION['error_msg'];
+                    echo "</div>";
+                    $_SESSION['error_msg'] = "";
+                }else if(isset($_SESSION['success_msg']) && ! empty($_SESSION['success_msg'])) {
+                    echo "<div class='alert alert-success'>";
+                    echo $_SESSION['success_msg'];
+                    echo "</div>";
+                    $_SESSION['success_msg'] = "";
+                }
+                 ?>
                 <div class="table-responsive">
                     <h4> Posts </h4>
                     <table class="table table-striped table-hover table-dark">

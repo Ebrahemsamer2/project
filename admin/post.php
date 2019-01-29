@@ -8,6 +8,7 @@ $posts = "active"; ?>
     $content = "";
     $tags = "";
     $excerpt = "";
+    $id = "";
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         if( isset($_POST['addpost'])) {
 
@@ -57,9 +58,71 @@ $posts = "active"; ?>
                     $content = "";
                     $tags = "";
                     $excerpt = "";
+                    redirect("posts.php");
                 }else {
                     $_SESSION['error_msg'] = "Unable to add Post";
                 }
+            }
+        }else {
+            if( isset($_POST['updatepost'])) {
+
+                $id = filter_input(INPUT_POST, 'id',FILTER_SANITIZE_NUMBER_INT);
+
+                $title = filter_input(INPUT_POST, 'title',FILTER_SANITIZE_STRING);
+                $content = filter_input(INPUT_POST,'content',FILTER_SANITIZE_STRING);
+                $category = filter_input(INPUT_POST,'category',FILTER_SANITIZE_STRING);
+                $tags = filter_input(INPUT_POST,'tags',FILTER_SANITIZE_STRING);
+                $excerpt = filter_input(INPUT_POST,'excerpt',FILTER_SANITIZE_STRING);
+                $image = $_FILES['image'];
+                $author = "Ebrahem"; // Temporary Author until creating admins
+
+                // Check For Errors
+
+                $error_msg = array();
+                if(strlen($title) < 10 || strlen($title) > 200) {
+                    $error_msg[] = "Post Title must be between 10 and 200 characters";
+                } else if(strlen($content) < 200 || strlen($content) > 10000) {
+                    $error_msg[] = "Post Content must be between 200 and 10000 characters";
+                }else {
+                    if(! empty($image['name'])) {
+                        $allowed_extensions = array('jpg' , 'png' , 'jpeg');
+                        $myextension = strtolower(explode('.',$image['name'])[1]);
+                        if(! in_array($myextension, $allowed_extensions)){
+                            $error_msg[] = "Sorry, Supported extensions are (PNG, JPG, JPEG)";
+                        } else if($image['size'] > 1000000) {
+                            $error_msg[] = "Image is too large";
+                        }
+                    }
+                }
+
+                if(empty($error_msg)) {
+                    $updated = "";
+                    if(! empty($image)) {
+                        $updated = update_post($title, $content, $category, $tags, $excerpt, $author, $image['name'],$id);
+                    }else {
+                        $updated = update_post($title, $content, $category, $tags, $excerpt, $author,$id);
+                    }
+                    if($updated) {
+                        if(! session_id()){
+                            session_start();
+                        }
+                        if(! empty($image['name'])) {
+                            $image_path = 'uploads/'.$image['name'];
+                            move_uploaded_file($image['tmp_name'] , $image_path);
+                        }
+                        $_SESSION['success_msg'] = "Post has been Updated Successfully";
+                        $title = "";
+                        $content = "";
+                        $tags = "";
+                        $excerpt = "";
+                        $id = "";
+                        redirect("posts.php");
+                    }else {
+                        $_SESSION['error_msg'] = "Unable to Update Post";
+                    }
+
+                }
+
             }
         }
     }
@@ -111,6 +174,7 @@ $posts = "active"; ?>
                  ?>
                  <form action="post.php" method="POST" enctype="multipart/form-data" >
                     <div class="form-group">
+                        <input name="id" type="hidden" value='<?php echo $id; ?>'>
                         <input value="<?php echo $title; ?>" class="form-control" type="text" placeholder="Post Title" required autocomplete="off" name="title">
                     </div>
                     <div class="form-group">
@@ -124,6 +188,8 @@ $posts = "active"; ?>
                                     if(isset( $_GET['id'])) {
                                         if($post['category'] === $category['name']){
                                             echo "selected >";
+                                        } else {
+                                            echo ">";
                                         }
                                     } else {
                                         if($category['name'] === "Uncategorized"){
@@ -158,7 +224,7 @@ $posts = "active"; ?>
                         <input class="form-control" type="file" name="image">
                     </div>
                     <?php if(isset( $_GET['id'])) {
-                        echo '<input value="Update Post" name="addpost" style="float: right" type="submit" class="btn btn-primary">' ;
+                        echo '<input value="Update Post" name="updatepost" style="float: right" type="submit" class="btn btn-primary">' ;
                     }else { ?>
                     <input value="Add Post" name="addpost" style="float: right" type="submit" class="btn btn-primary">
                     <?php  } ?>

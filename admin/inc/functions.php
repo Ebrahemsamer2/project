@@ -4,6 +4,11 @@
     This file has all admin panel functions
 */
 
+function redirect($location) {
+    header("Location: $location");
+    exit;
+}
+
 // Categories Functions
 function get_categories($limit = "") {
     include "connect.php";
@@ -70,3 +75,36 @@ function get_posts($limit = "",$id = "") {
     }
 }
 
+function update_post($title, $content, $category, $tags, $excerpt,$author, $image = "", $id) {
+    include "connect.php";
+    $sql = "";
+    if(empty($image)) {
+        $sql = "UPDATE posts SET title = ?, content = ?, category = ?, tags = ?, excerpt = ?, author = ? WHERE id = ?";
+    } else {
+        $sql = "UPDATE posts SET title = ?, content = ?, category = ?, tags = ?, excerpt = ?, author = ?, image = ? WHERE id = ?";
+    }
+    
+    try {
+        $result = $con->prepare($sql);
+        $result->bindValue(1,$title,PDO::PARAM_STR);
+        $result->bindValue(2,$content,PDO::PARAM_STR);
+        $result->bindValue(3,$category,PDO::PARAM_STR);
+        $result->bindValue(4,$tags,PDO::PARAM_STR);
+        $result->bindValue(5,$excerpt,PDO::PARAM_STR);
+        $result->bindValue(6,$author,PDO::PARAM_STR);
+        if($image) {
+            $result->bindValue(7,$image,PDO::PARAM_STR);
+            $result->bindValue(8,$id,PDO::PARAM_INT);
+        }else {
+            $result->bindValue(7,$id,PDO::PARAM_INT);
+        }
+
+        return $result->execute();
+
+    }catch(Exception $e) {
+        echo "Error: ".$e->getMessage() . '/n';
+        return false;
+    }
+
+
+}
