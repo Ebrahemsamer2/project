@@ -5,23 +5,63 @@
 */
 
 // Categories Functions
-function get_categories($limit = "") {
+function get_categories($limit = "", $id = "") {
     include "connect.php";
     if($limit) {
-        $sql = "SELECT * FROM categories ORDER BY datetime DESC LIMIT 3 ";
-    }else {
+        $sql = "SELECT * FROM categories ORDER BY datetime DESC LIMIT $limit ";
+    }else if($id) {
+        $sql = "SELECT * FROM categories WHERE id = ? ";
+    } else {
         $sql = "SELECT * FROM categories ORDER BY datetime DESC";
     }
     try {
-        $result = $con->query($sql);
-        return $result;
+        if($id){
+            $result = $con->prepare($sql);
+            $result->bindValue(1, $id, PDO::PARAM_INT);
+            $result->execute();
+            return $result->fetch();
+        }else {
+            $result = $con->query($sql);
+            return $result;
+        }
     }catch(Exception $e) {
         echo "Error: ". $e->getMessage() . '\n';
         return array();
     }
 }
 
+function insert_category($datetime, $name, $author) {
+    include "connect.php";
+    $sql = "INSERT INTO categories (datetime, name, creater_name) VALUES (?, ?, ?)";
+    try{
+        $result = $con->prepare($sql);
+        $result->bindValue(1, $datetime, PDO::PARAM_STR);
+        $result->bindValue(2, $name, PDO::PARAM_STR);
+        $result->bindValue(3, $author, PDO::PARAM_STR);
 
+        return $result->execute();
+
+    }catch(Exception $e) {
+        echo "Error: ". $e->getMessage() . '\n';
+        return false;
+    }
+}
+
+function update_category($id, $name) {
+    include "connect.php";
+    $sql = "UPDATE categories SET name = ? WHERE id = ? ";
+
+    try {
+        $result = $con->prepare($sql);
+        $result->bindValue(1,$name, PDO::PARAM_STR);
+        $result->bindValue(2,$id, PDO::PARAM_INT);
+
+        return $result->execute();
+    }catch(Exception $e) {
+        echo "Error: ".$e->getMessage();
+        return false;
+    }
+}
 
 // Posts Functions
 function insert_post($title, $content, $category, $tags, $excerpt,$author, $image) {
@@ -100,8 +140,6 @@ function update_post($title, $content, $category, $tags, $excerpt,$author, $imag
         echo "Error: ".$e->getMessage() . '/n';
         return false;
     }
-
-
 }
 
 

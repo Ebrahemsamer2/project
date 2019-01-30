@@ -11,7 +11,7 @@ $posts = "active";
         </div>
         <div class='col-sm'>
             <div class='posts'>
-            <?php 
+                <?php 
                 if(! session_id()){
                     session_start();
                 }
@@ -26,7 +26,7 @@ $posts = "active";
                     echo "</div>";
                     $_SESSION['success_msg'] = "";
                 }
-                 ?>
+                ?>
                 <div class="table-responsive">
                     <h4> Posts </h4>
                     <table class="table table-striped table-hover table-dark">

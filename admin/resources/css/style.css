@@ -118,10 +118,12 @@ hr {
 
 /* Add New Post Style */
 
-.addnewpost {
+.addnewpost,
+.categories {
     margin-top: 50px;
 }
-.addnewpost h3 {
+.addnewpost h3,
+.categories h3 {
     margin-bottom: 20px;
 }
 .addnewpost form input[type='submit'] {
@@ -160,9 +162,19 @@ hr {
 .posts table tbody td {
     font-size: 15px;
 }
-.posts table tbody td.action-links {
+.posts table tbody td.action-links,
+.categories table tbody td.action-links {
     width: 130px;
 }
-.posts table tbody td.action-links form {
+.posts table tbody td.action-links form,
+.categories table tbody td.action-links form {
     display: inline;
 }
+
+
+/* Categories Style */
+
+.categories > form input[type='submit'] {
+    margin-bottom: 20px;
+}
+
