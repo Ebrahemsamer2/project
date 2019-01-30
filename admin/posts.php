@@ -75,8 +75,9 @@ $posts = "active";
                                 </td>
                                 <td><?php echo $post['author']; ?></td>
                                 <td class='action-links'><a href='post.php?id=<?php echo $post["id"]; ?>' class='btn btn-info btn-sm'>Edit</a>
-                                <form action="deletepost.php" method='POST'>
-                                    <input class='btn btn-danger btn-sm' type='submit' value="Delete" />
+                                <form onsubmit="return confirm('Are You Sure?');" action="deletepost.php" method='POST'>
+                                    <input type="hidden" value="<?php echo $post["id"]; ?>" name="id">
+                                    <input name='deletepost' class='btn btn-danger btn-sm' type='submit' value="Delete" />
                                 </form>
                                 </td>
                             </tr>

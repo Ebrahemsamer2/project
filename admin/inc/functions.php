@@ -4,11 +4,6 @@
     This file has all admin panel functions
 */
 
-function redirect($location) {
-    header("Location: $location");
-    exit;
-}
-
 // Categories Functions
 function get_categories($limit = "") {
     include "connect.php";
@@ -107,4 +102,26 @@ function update_post($title, $content, $category, $tags, $excerpt,$author, $imag
     }
 
 
+}
+
+
+
+/* Global Functions */
+
+function redirect($location) {
+    header("Location: $location");
+    exit;
+}
+
+function delete($table, $id) {
+    include "connect.php";
+    $sql = "DELETE FROM $table WHERE id = ?";
+    try{
+        $result = $con->prepare($sql);
+        $result->bindValue(1,$id,PDO::PARAM_INT);
+        return $result->execute();
+    }catch(Exception $e) {
+        echo "Error: ".$e->getMessage();
+        return false;
+    }
 }
