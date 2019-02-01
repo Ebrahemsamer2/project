@@ -176,9 +176,11 @@ $posts = "active"; ?>
                     <div class="form-group">
                         <input name="id" type="hidden" value='<?php echo $id; ?>'>
                         <input value="<?php echo $title; ?>" class="form-control" type="text" placeholder="Post Title" required autocomplete="off" name="title">
+                        <p class="error title-error">Title must be between 30 and 200 characters</p>
                     </div>
                     <div class="form-group">
                         <textarea class="form-control" placeholder="Type Your Post" required autocomplete="off" name="content" cols="30" rows="10"><?php echo $content; ?></textarea>
+                        <p class="error content-error">Content must be between 200 and 10000 characters</p>
                     </div>
                     <div class="form-group">
                         <select class='form-control' name="category">
@@ -206,6 +208,7 @@ $posts = "active"; ?>
                     </div>
                     <div class="form-group">
                         <input value="<?php echo $excerpt; ?>" class="form-control" type="text" placeholder="Excerpt ( Optional )" autocomplete="off" name="excerpt">
+                        <p class="error excerpt-error">Excerpt must be between 50 and 200 characters</p>
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="text" placeholder="Tags ( Optional ) separate tags with ( , ) " autocomplete="off" name="tags" value="<?php echo $tags; ?>">

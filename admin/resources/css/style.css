@@ -138,7 +138,14 @@ hr {
 .main-area div.table-responsive h4 span {
     font-size: 17px;
 }
-
+.addnewpost form p.error {
+    display: none;
+    color: red;
+    margin-top: 5px;
+    margin-left: 10px;
+    font-size: 13px;
+    padding: 0;
+}
 
 /* Posts Style */
 
