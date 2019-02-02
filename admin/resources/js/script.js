@@ -36,7 +36,7 @@ $(function() {
             $(".content-error").fadeOut(500);
         }
         if(excerpt.length !== 0) {
-            if(excerpt.length < 50 || excerpt.length > 200 ) {
+            if(excerpt.length < 100 || excerpt.length > 500 ) {
                 $(".excerpt-error").fadeIn(500);
                 return false;
             }else {

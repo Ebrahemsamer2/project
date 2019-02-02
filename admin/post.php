@@ -208,7 +208,7 @@ $posts = "active"; ?>
                     </div>
                     <div class="form-group">
                         <input value="<?php echo $excerpt; ?>" class="form-control" type="text" placeholder="Excerpt ( Optional )" autocomplete="off" name="excerpt">
-                        <p class="error excerpt-error">Excerpt must be between 50 and 200 characters</p>
+                        <p class="error excerpt-error">Excerpt must be between 100 and 500 characters</p>
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="text" placeholder="Tags ( Optional ) separate tags with ( , ) " autocomplete="off" name="tags" value="<?php echo $tags; ?>">
