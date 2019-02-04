@@ -70,74 +70,84 @@ $admins = "active"; ?>
                     redirect("admins.php");
                 }
             }
-        }else {
-            if( isset($_POST['updateadmin'])) {
+        }else if( isset($_POST['updateadmin'])) {
+            $id = filter_input(INPUT_POST, 'id',FILTER_SANITIZE_NUMBER_INT);
 
-                $id = filter_input(INPUT_POST, 'id',FILTER_SANITIZE_NUMBER_INT);
+            $title = filter_input(INPUT_POST, 'title',FILTER_SANITIZE_STRING);
+            $content = filter_input(INPUT_POST,'content',FILTER_SANITIZE_STRING);
+            $category = filter_input(INPUT_POST,'category',FILTER_SANITIZE_STRING);
+            $tags = filter_input(INPUT_POST,'tags',FILTER_SANITIZE_STRING);
+            $excerpt = filter_input(INPUT_POST,'excerpt',FILTER_SANITIZE_STRING);
+            $image = $_FILES['image'];
+            $author = "Ebrahem"; // Temporary Author until creating admins
 
-                $title = filter_input(INPUT_POST, 'title',FILTER_SANITIZE_STRING);
-                $content = filter_input(INPUT_POST,'content',FILTER_SANITIZE_STRING);
-                $category = filter_input(INPUT_POST,'category',FILTER_SANITIZE_STRING);
-                $tags = filter_input(INPUT_POST,'tags',FILTER_SANITIZE_STRING);
-                $excerpt = filter_input(INPUT_POST,'excerpt',FILTER_SANITIZE_STRING);
-                $image = $_FILES['image'];
-                $author = "Ebrahem"; // Temporary Author until creating admins
+            // Check For Errors
 
-                // Check For Errors
+            $error_msg = array();
+            if(strlen($title) < 10 || strlen($title) > 200) {
+                $error_msg[] = "Post Title must be between 10 and 200 characters";
+            } else if(strlen($content) < 200 || strlen($content) > 10000) {
+                $error_msg[] = "Post Content must be between 200 and 10000 characters";
+            }else {
+                if(! empty($image['name'])) {
+                    $allowed_extensions = array('jpg' , 'png' , 'jpeg');
+                    $myextension = strtolower(explode('.',$image['name'])[1]);
+                    if(! in_array($myextension, $allowed_extensions)){
+                        $error_msg[] = "Sorry, Supported extensions are (PNG, JPG, JPEG)";
+                    } else if($image['size'] > 1000000) {
+                        $error_msg[] = "Image is too large";
+                    }
+                }
+            }
 
-                $error_msg = array();
-                if(strlen($title) < 10 || strlen($title) > 200) {
-                    $error_msg[] = "Post Title must be between 10 and 200 characters";
-                } else if(strlen($content) < 200 || strlen($content) > 10000) {
-                    $error_msg[] = "Post Content must be between 200 and 10000 characters";
+            if(empty($error_msg)) {
+                $updated = "";
+                if(! empty($image)) {
+                    $updated = update_post($title, $content, $category, $tags, $excerpt, $author, $image['name'],$id);
                 }else {
+                    $updated = update_post($title, $content, $category, $tags, $excerpt, $author,$id);
+                }
+                if($updated) {
+                    if(! session_id()){
+                        session_start();
+                    }
                     if(! empty($image['name'])) {
-                        $allowed_extensions = array('jpg' , 'png' , 'jpeg');
-                        $myextension = strtolower(explode('.',$image['name'])[1]);
-                        if(! in_array($myextension, $allowed_extensions)){
-                            $error_msg[] = "Sorry, Supported extensions are (PNG, JPG, JPEG)";
-                        } else if($image['size'] > 1000000) {
-                            $error_msg[] = "Image is too large";
-                        }
+                        $image_path = 'uploads/'.$image['name'];
+                        move_uploaded_file($image['tmp_name'] , $image_path);
                     }
+                    $_SESSION['success_msg'] = "Post has been Updated Successfully";
+                    $username = "";
+                    $email = "";
+                    redirect("admins.php");
+                }else {
+                    $_SESSION['error_msg'] = "Unable to Update Post";
                 }
 
-                if(empty($error_msg)) {
-                    $updated = "";
-                    if(! empty($image)) {
-                        $updated = update_post($title, $content, $category, $tags, $excerpt, $author, $image['name'],$id);
-                    }else {
-                        $updated = update_post($title, $content, $category, $tags, $excerpt, $author,$id);
-                    }
-                    if($updated) {
-                        if(! session_id()){
-                            session_start();
-                        }
-                        if(! empty($image['name'])) {
-                            $image_path = 'uploads/'.$image['name'];
-                            move_uploaded_file($image['tmp_name'] , $image_path);
-                        }
-                        $_SESSION['success_msg'] = "Post has been Updated Successfully";
-                        $username = "";
-                        $email = "";
-                        redirect("admins.php");
-                    }else {
-                        $_SESSION['error_msg'] = "Unable to Update Post";
-                    }
-
+            }
+        }else {
+            if(isset($_POST['deleteadmin'])) {
+                $id = filter_input(INPUT_POST,'id',FILTER_SANITIZE_NUMBER_INT);
+                if(! session_id()){
+                    session_start();
                 }
-
+                if(delete('admins',$id)) {
+                    $_SESSION['success_msg'] = "Admin has been Deleted";
+                    redirect("admins.php");
+                }else {
+                    $_SESSION['error_msg'] = "Unable to Delete Admin, Try Again";
+                    redirect("admins.php");  
+                }
             }
         }
     }
     else if(isset( $_GET['id'])) {
         $id = filter_input(INPUT_GET,'id',FILTER_SANITIZE_NUMBER_INT);
-        $post = get_posts("",$id);
+        $admin = get_admins($id);
 
-        $title = $post['title'];
-        $content = $post['content'];
-        $tags = $post['tags'];
-        $excerpt = $post['excerpt'];
+        $username = $admin['username'];
+        $email = $admin['email'];
+        $role_type = $admin['role_type'];
+        $image = $admin['image'];
     }
 ?>
 
@@ -190,10 +200,10 @@ $admins = "active"; ?>
                     </div>
                     <?php 
                     if(isset( $_GET['id'])) {
-                        if(! empty($post['image'])) { ?>
-                        <div class='post-img' style="margin-bottom: 10px;">
+                        if(! empty($admin['image'])) { ?>
+                        <div class='admin-img' style="margin-bottom: 10px;">
                             <label for="img">Admin Image: </label>
-                            <img width="100" src="uploads/admins/<?php echo $admin['image']; ?>" alt="Admin Photo">
+                            <img width="100" src="uploads/admins/<?php echo $image; ?>" alt="Admin Photo">
                         </div>
                     <?php   }
                     }
