@@ -2,7 +2,7 @@
 
 body {
     font-family: 'Lato', sans-serif;
-    background: #d8d8d8;
+    background: #ffffff;
     padding-top: 40px;
 }
 h1,h2,h3,h4,h5,h6 {
@@ -206,4 +206,54 @@ form p.error {
 }
 .admins table tbody td img {
     border-radius: 50%;
+}
+
+/* Login Style */
+
+.login {
+    width: 350px;
+    margin: 20px auto;
+    box-shadow: 0px 0px 2px #c3c3c3; 
+    height: 220px;
+}
+.login .form-header {
+    padding: 10px;
+    background: rgb(226, 136, 136);
+    color: #fff;
+    border-radius: 2px 2px 0 0 ;
+}
+h4.login-title {
+    margin-top: 100px;
+}
+.login form {
+    margin: 20px;
+    position: relative;
+}
+.login form input:not([type='submit']) {
+    padding-left: 30px;
+}
+.login form i {
+    position: absolute;
+    left: 0;
+    font-size: 16px;
+    color: rgb(171, 171, 171,1);
+}
+.login form div i.fa-envelope {
+    top: 12px;
+    left: 10px;
+}
+.login form div i.fa-unlock-alt {
+    left: 10px;
+    top: 67px;
+}
+.login form a{
+    font-size: 13px;
+    margin-left: 10px;
+    margin-top: 5px;
+    text-decoration: none;
+}
+.login form input[type='submit'] {
+    background: rgb(226, 136, 136);
+    color: rgb(255, 255, 255);
+    float: right;
 }
