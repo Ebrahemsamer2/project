@@ -1,7 +1,7 @@
 <?php 
-$page_title = "Posts";
+$page_title = "Admins";
 include "inc/init.php";
-$posts = "active";
+$admins = "active";
 
 ?>
 <div class="container-fluid">
@@ -10,7 +10,7 @@ $posts = "active";
             <?php include "inc/sidebar.php"; ?>
         </div>
         <div class='col-sm'>
-            <div class='posts'>
+            <div class='admins'>
                 <?php 
                 if(! session_id()){
                     session_start();
@@ -28,15 +28,15 @@ $posts = "active";
                 }
                 ?>
                 <div class="table-responsive">
-                    <h4> Posts </h4>
+                    <h4> Admins </h4>
                     <table class="table table-striped table-hover table-dark">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Content</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Email</th>
                                 <th scope="col">Image</th>
-                                <th scope="col">Author</th>
+                                <th scope="col">Role Type</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
@@ -44,7 +44,7 @@ $posts = "active";
                             <?php $no = 0;
                                   $hide = 0;
                             ?>
-                            <?php foreach(get_posts() as $post): 
+                            <?php foreach(get_admins() as $admin): 
                                 $no++; 
                                 $hide++;
                             
@@ -56,36 +56,38 @@ $posts = "active";
                             }
                             ?>
                                 <th scope="row"><?php echo $no; ?></th>
-                                <td title='<?php echo $post["title"]; ?>'><?php
-                                if(strlen($post['title']) > 30) {
-                                    echo substr($post['title'],0,30) . '...';
+                                <td title='<?php echo $admin["username"]; ?>'><?php
+                                if(strlen($admin['username']) > 30) {
+                                    echo substr($admin['username'],0,30) . '...';
                                 }else {
-                                    echo $post['title']; 
+                                    echo $admin['username']; 
                                 }
                                 ?></td>
                                 <td><?php
-                                if(strlen($post['content']) > 100) {
-                                    echo substr($post['content'],0,100) . '...';
+                                if(strlen($admin['email']) > 50) {
+                                    echo substr($admin['email'],0,50) . '...';
                                 }else {
-                                    echo $post['content']; 
+                                    echo $admin['email']; 
                                 }
                                 ?></td>
                                 <td>
-                                    <img width='100' src="uploads/posts/<?php echo $post['image']; ?>" alt="">
+                                    <img height='80' width='80' src="uploads/admins/<?php echo $admin['image']; ?>" alt="">
                                 </td>
-                                <td><?php echo $post['author']; ?></td>
-                                <td class='action-links'><a href='post.php?id=<?php echo $post["id"]; ?>' class='btn btn-info btn-sm'>Edit</a>
-                                <form onsubmit="return confirm('Are You Sure?');" action="deletepost.php" method='POST'>
-                                    <input type="hidden" value="<?php echo $post["id"]; ?>" name="id">
-                                    <input name='deletepost' class='btn btn-danger btn-sm' type='submit' value="Delete" />
+                                <td><?php echo $admin['role_type']; ?> </td>
+                                <td class='action-links'><a href='admin.php?id=<?php echo $admin["id"]; ?>' class='btn btn-info btn-sm'>Edit</a>
+                                <form onsubmit="return confirm('Are You Sure?');" action="deleteadmin.php" method='POST'>
+                                    <input type="hidden" value="<?php echo $admin["id"]; ?>" name="id">
+                                    <input name='deleteadmin' class='btn btn-danger btn-sm' type='submit' value="Delete" />
                                 </form>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
-                    <a style="float:right;margin-bottom:10px;" class="btn btn-primary" href="post.php"><i class='fa fa-plus'></i> Add New Post</a>
-                    <a href="" class='show-more'>show more <i class='fa fa-angle-down'></i></a>                        
+                    <a style="float:right;margin-bottom:10px;" class="btn btn-primary" href="post.php"><i class='fa fa-plus'></i> Add New Admin</a>
+                    <?php if($hide > 10){ ?>
+                        <a href="" class='show-more'>show more <i class='fa fa-angle-down'></i></a> 
+                    <?php } ?>                       
                 </div>
             </div>
         </div>

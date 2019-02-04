@@ -143,6 +143,44 @@ function update_post($title, $content, $category, $tags, $excerpt,$author, $imag
 }
 
 
+/* Admin Functions */
+function get_admins($id = "") {
+    include "connect.php";
+    if($id) {
+        $sql = "SELECT * FROM admins WHERE id = ? ";
+    } else {
+        $sql = "SELECT * FROM admins ORDER BY datetime DESC";
+    }
+    try {
+        if($id){
+            $result = $con->prepare($sql);
+            $result->bindValue(1, $id, PDO::PARAM_INT);
+            $result->execute();
+            return $result->fetch();
+        }else {
+            $result = $con->query($sql);
+            return $result;
+        }
+    }catch(Exception $e) {
+        echo "Error: ". $e->getMessage() . '\n';
+        return array();
+    }
+}
+function insert_admin($datetime, $username, $email, $password, $role_type, $image, $created_by) {
+    $fields = array($datetime, $username, $email, $password, $role_type, $image, $created_by);
+    include "connect.php";
+    $sql = "INSERT INTO admins (datetime, username, email, password, role_type, image, created_by) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    try {
+        $result = $con->prepare($sql);
+        for($i=1; $i<=7; $i++){
+            $result->bindValue($i, $fields[$i-1], PDO::PARAM_STR);
+        }
+        return $result->execute();
+    }catch(Exception $e) {
+        echo "Error: ".$e->getMessage();
+        return false;
+    }
+}
 
 /* Global Functions */
 

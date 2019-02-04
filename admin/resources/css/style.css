@@ -24,17 +24,23 @@ hr {
 }
 .navbar-light .navbar-brand {
     color: #d8d8d8;
+    margin-left: 10px;
 }
 .navbar-light .navbar-nav .nav-link {
     color: #d8d8d8;
+    margin-right: 5px;
 }
 .navbar-expand-lg .navbar-nav .dropdown-menu,
 .dropdown-menu.show {
     background: #232527;
     transition: .3s ease-in-out;
 }
+.dropdown-menu {
+    padding: 0;
+    left: -90px;
+}
 .dropdown-menu.brandmenu {
-    left: 120px;
+    left: 30px;
 }
 .dropdown-menu.brandmenu:after {
     font-family: FontAwesome;
@@ -64,7 +70,7 @@ hr {
     height: 10px;
     width: 20px;
     position: absolute;
-    left: 20px;
+    left: 116px;
     top: -10px; 
 }
 .navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
@@ -119,11 +125,13 @@ hr {
 /* Add New Post Style */
 
 .addnewpost,
-.categories {
+.categories,
+.admin {
     margin-top: 50px;
 }
 .addnewpost h3,
-.categories h3 {
+.categories h3,
+.admin h3 {
     margin-bottom: 20px;
 }
 .addnewpost form input[type='submit'] {
@@ -138,7 +146,7 @@ hr {
 .main-area div.table-responsive h4 span {
     font-size: 17px;
 }
-.addnewpost form p.error {
+form p.error {
     display: none;
     color: red;
     margin-top: 5px;
@@ -152,7 +160,8 @@ hr {
 .posts {
     margin-top: 20px;
 }
-.posts table {
+.posts table,
+.admins table {
     margin-top: 20px;
 }
 .posts table tbody tr.hide {
@@ -170,11 +179,13 @@ hr {
     font-size: 15px;
 }
 .posts table tbody td.action-links,
-.categories table tbody td.action-links {
+.categories table tbody td.action-links,
+.admins table tbody td.action-links {
     width: 130px;
 }
 .posts table tbody td.action-links form,
-.categories table tbody td.action-links form {
+.categories table tbody td.action-links form,
+.admins table tbody td.action-links form {
     display: inline;
 }
 
@@ -185,3 +196,14 @@ hr {
     margin-bottom: 20px;
 }
 
+
+
+
+/* Admins Style */
+
+.admins h4 {
+    margin-top: 20px;
+}
+.admins table tbody td img {
+    border-radius: 50%;
+}

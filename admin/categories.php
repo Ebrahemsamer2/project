@@ -109,6 +109,7 @@ $name = "";
                     <div class='form-group'>
                         <input type="hidden" value="<?php echo $id; ?>" name='id' >
                         <input value="<?php echo $name; ?>" type="text" name="name" placeholder='Category Name' class='form-control' required autocomplete='off'>
+                        <p class='error name-error'>Category Name must be between 5 and 50 characters</p>
                     </div>
                     <?php 
                         if(isset($_GET['id'])){                        

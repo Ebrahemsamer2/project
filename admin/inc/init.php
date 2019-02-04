@@ -5,8 +5,9 @@ include "functions.php";
 
 $posts = "";
 $dashboard = "";
-$tags = "";
+$users = "";
 $categories = "";
 $comments = "";
+$admins = "";
 $settings = "";
 ?>

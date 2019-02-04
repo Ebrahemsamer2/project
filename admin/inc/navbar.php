@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
-<div class="container">
+<div class="container-fluid">
     <a class="navbar-brand dropdown-toggle" href="#" id="brandDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Navbar</a>
     <div class="dropdown-menu brandmenu" aria-labelledby="brandDropdown">
             <a class="dropdown-item" href="#">View Site</a>
