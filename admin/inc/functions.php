@@ -64,19 +64,15 @@ function update_category($id, $name) {
 }
 
 // Posts Functions
-function insert_post($title, $content, $category, $tags, $excerpt,$author, $image) {
+function insert_post($datetime, $title, $content, $category, $tags, $excerpt,$author, $image) {
+    $fields = array($datetime, $title, $content, $category, $tags, $excerpt,$author, $image);
     include "connect.php";
-    $sql = "INSERT INTO posts (title, content,category, tags, excerpt,author, image) VALUES (?,?,?,?,?,?,?) ";
+    $sql = "INSERT INTO posts (datetime, title, content,category, tags, excerpt,author, image) VALUES (?,?,?,?,?,?,?,?) ";
     try{
         $result = $con->prepare($sql);
-        $result->bindValue(1, $title, PDO::PARAM_STR);
-        $result->bindValue(2, $content, PDO::PARAM_STR);
-        $result->bindValue(3, $category, PDO::PARAM_STR);
-        $result->bindValue(4, $tags, PDO::PARAM_STR);
-        $result->bindValue(5, $excerpt, PDO::PARAM_STR);
-        $result->bindValue(6, $author, PDO::PARAM_STR);
-        $result->bindValue(7, $image, PDO::PARAM_STR);
-
+        for($i=1; $i<=8; $i++){
+            $result->bindValue($i, $fields[$i-1], PDO::PARAM_STR);
+        }
         return $result->execute();
     }catch(Exception $e) {
         echo "Error: ". $e->getMessage() . '\n';
@@ -111,6 +107,7 @@ function get_posts($limit = "",$id = "") {
 }
 
 function update_post($title, $content, $category, $tags, $excerpt,$author, $image = "", $id) {
+    $fields = array($title, $content, $category, $tags, $excerpt,$author);
     include "connect.php";
     $sql = "";
     if(empty($image)) {
@@ -121,21 +118,16 @@ function update_post($title, $content, $category, $tags, $excerpt,$author, $imag
     
     try {
         $result = $con->prepare($sql);
-        $result->bindValue(1,$title,PDO::PARAM_STR);
-        $result->bindValue(2,$content,PDO::PARAM_STR);
-        $result->bindValue(3,$category,PDO::PARAM_STR);
-        $result->bindValue(4,$tags,PDO::PARAM_STR);
-        $result->bindValue(5,$excerpt,PDO::PARAM_STR);
-        $result->bindValue(6,$author,PDO::PARAM_STR);
+        for($i=1; $i <= 6; $i++){
+            $result->bindValue($i,$fields[$i - 1],PDO::PARAM_STR);
+        }
         if($image) {
             $result->bindValue(7,$image,PDO::PARAM_STR);
             $result->bindValue(8,$id,PDO::PARAM_INT);
         }else {
             $result->bindValue(7,$id,PDO::PARAM_INT);
         }
-
         return $result->execute();
-
     }catch(Exception $e) {
         echo "Error: ".$e->getMessage() . '/n';
         return false;
@@ -181,6 +173,22 @@ function insert_admin($datetime, $username, $email, $password, $role_type, $imag
         return false;
     }
 }
+
+function is_admin($email) {
+    include "connect.php";
+    $sql = "SELECT id, email, username, password FROM admins WHERE email = ? ";
+
+    try{
+        $result = $con->prepare($sql);
+        $result->bindValue(1, $email,PDO::PARAM_STR);
+        $result->execute();
+        return $result->fetch(PDO::FETCH_ASSOC);
+    }catch(Exception $e) {
+        echo "Error: ".$e->getMessage();
+        return false;
+    }
+}
+
 
 /* Global Functions */
 

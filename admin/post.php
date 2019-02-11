@@ -20,9 +20,10 @@ $posts = "active"; ?>
             $image = $_FILES['image'];
 
             $author = "Ebrahem"; // Temporary Author until creating admins
+
             date_default_timezone_set("Africa/Cairo");
-            $datetime = date('M-d-Y h:m');
-             
+            $datetime =  date('M-d-Y h:m', time());
+            
             // Check For Errors
 
             $error_msg = array();
@@ -45,7 +46,7 @@ $posts = "active"; ?>
             //  No Errors: You're ready to go
 
             if(empty($error_msg)) {
-                if(insert_post($title, $content, $category, $tags, $excerpt, $author, $image['name'])) {
+                if(insert_post($datetime, $title, $content, $category, $tags, $excerpt, $author, $image['name'])) {
                     if(! session_id()){
                         session_start();
                     }

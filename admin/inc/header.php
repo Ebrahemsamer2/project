@@ -12,4 +12,4 @@
         <!-- My Own style -->
         <link rel="stylesheet" href="resources/css/style.css">
     </head>
-<body>
+<body <?php if($page_title === "Admin Login | Zblog") echo "class='login-style' "; ?> >

@@ -15,12 +15,12 @@ $admins = "active"; ?>
             $role_type = filter_input(INPUT_POST,'role_type',FILTER_SANITIZE_STRING);
             $image = $_FILES['image'];
 
-            $password = password_hash("11111111", PASSWORD_DEFAULT);
+            $password = password_hash("zblog_password",PASSWORD_DEFAULT);
 
             $created_by = "Ebrahem"; // Temporary Author until creating admins
             date_default_timezone_set("Africa/Cairo");
             $datetime = date('M-d-Y h:m');
-             
+            
             // Check For Errors
 
             $error_msg = "";
@@ -83,19 +83,19 @@ $admins = "active"; ?>
 
             // Check For Errors
 
-            $error_msg = array();
+            $error_msg = "";
             if(strlen($title) < 10 || strlen($title) > 200) {
-                $error_msg[] = "Post Title must be between 10 and 200 characters";
+                $error_msg = "Post Title must be between 10 and 200 characters";
             } else if(strlen($content) < 200 || strlen($content) > 10000) {
-                $error_msg[] = "Post Content must be between 200 and 10000 characters";
+                $error_msg = "Post Content must be between 200 and 10000 characters";
             }else {
                 if(! empty($image['name'])) {
                     $allowed_extensions = array('jpg' , 'png' , 'jpeg');
                     $myextension = strtolower(explode('.',$image['name'])[1]);
                     if(! in_array($myextension, $allowed_extensions)){
-                        $error_msg[] = "Sorry, Supported extensions are (PNG, JPG, JPEG)";
+                        $error_msg = "Sorry, Supported extensions are (PNG, JPG, JPEG)";
                     } else if($image['size'] > 1000000) {
-                        $error_msg[] = "Image is too large";
+                        $error_msg = "Image is too large";
                     }
                 }
             }

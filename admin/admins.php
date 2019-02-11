@@ -84,7 +84,7 @@ $admins = "active";
                             <?php endforeach; ?>
                         </tbody>
                     </table>
-                    <a style="float:right;margin-bottom:10px;" class="btn btn-primary" href="post.php"><i class='fa fa-plus'></i> Add New Admin</a>
+                    <a style="float:right;margin-bottom:10px;" class="btn btn-primary" href="admin.php"><i class='fa fa-plus'></i> Add New Admin</a>
                     <?php if($hide > 10){ ?>
                         <a href="" class='show-more'>show more <i class='fa fa-angle-down'></i></a> 
                     <?php } ?>                       
