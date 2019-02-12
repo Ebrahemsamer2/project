@@ -17,7 +17,13 @@ $admins = "active"; ?>
 
             $password = password_hash("zblog_password",PASSWORD_DEFAULT);
 
-            $created_by = "Ebrahem"; // Temporary Author until creating admins
+            if(! session_id()) {
+                session_start();
+            }
+            $created_by = "";
+            if(isset($_SESSION['admin_username'])) {
+                $created_by = $_SESSION['admin_username'];
+            }
             date_default_timezone_set("Africa/Cairo");
             $datetime = date('M-d-Y h:m');
             
@@ -45,17 +51,18 @@ $admins = "active"; ?>
             if(empty($error_msg)) {
                 if(insert_admin($datetime, $username, $email, $password, $role_type, $image['name'], $created_by)) {
 
-                    // send email with default password ( 11111111 )
+                    // send email with default password ( zblog_password )
 
-                    /* if(password_verify("11111111",$password)) {
-                        $send_password = "11111111";
-                        $content = "You're just Added To Zblog as Admin, Congrats Your default password to login with is 
-                        $send_password , Do not forget to change it to stronger one";
-                        $subject = "Getting Default Password";
-                        $header = "From: ZBlog Administration";
+                    // if(password_verify("zblog_password",$password)) {
+                    //     $send_password = "zblog_password";
+                    //     $content = "You're just Added To Zblog as Admin, Congrats Your default password to login with is 
+                    //     $send_password , Do not forget to change it to stronger one";
+                    //     $subject = "Getting Default Password";
+                    //     $header = "From: Soltan_algaram41@yahoo.com";
 
-                        mail("ebrahemsamer2@gmail.com", $subject, $content, $header);
-                    } */ // until uploading to a real server
+                    //     mail("nosa_2013@yahoo.com", $subject, $content, $header);
+                    // } 
+                    
                     if(! session_id()){
                         session_start();
                     }

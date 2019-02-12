@@ -18,6 +18,7 @@ $page_title = "Admin Login | Zblog";
                 }
                 if(password_verify($password, $admin_found['password'])) {
                     $_SESSION['admin_username'] = $admin_found['username'];
+                    $_SESSION['admin_email'] = $admin_found['email'];
                     $_SESSION['id'] = $admin_found['id'];
                     redirect("index.php");
                 }else {

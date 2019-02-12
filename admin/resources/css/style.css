@@ -173,7 +173,8 @@ form p.error {
     margin-top: 20px;
 }
 .posts table,
-.admins table {
+.admins table,
+.comments table {
     margin-top: 20px;
 }
 .posts table tbody tr.hide {
@@ -190,17 +191,13 @@ form p.error {
 .posts table tbody td {
     font-size: 15px;
 }
-.posts table tbody td.action-links,
-.categories table tbody td.action-links,
-.admins table tbody td.action-links {
+
+table tbody td.action-links {
     width: 130px;
 }
-.posts table tbody td.action-links form,
-.categories table tbody td.action-links form,
-.admins table tbody td.action-links form {
+table tbody td.action-links form {
     display: inline;
 }
-
 
 /* Categories Style */
 
@@ -282,34 +279,17 @@ form p.error {
 }
 
 
-/* 
-.login {
-    width: 350px;
-    margin: 20px auto;
-    box-shadow: 0px 0px 2px #c3c3c3; 
-    height: 220px;
-}
-.login .form-header {
-    padding: 10px;
-    background: rgb(226, 136, 136);
-    color: #fff;
-    border-radius: 2px 2px 0 0 ;
-}
-h4.login-title {
-    margin-top: 100px;
-}
-.login form {
-    margin: 20px;
-    position: relative;
-}
-.login form input:not([type='submit']) {
-    padding-left: 30px;
-}
+/* Comments Style */
 
-.login form a{
-    font-size: 13px;
-    margin-left: 10px;
-    margin-top: 5px;
-    text-decoration: none;
+.comments h4 {
+    margin-top: 20px;
 }
- */
+.comments .unapproved-comments table tbody td.action-links{
+    width: 220px;
+}
+.comments .unapproved-comments table tbody td.action-links form {
+    display: inline;
+}
+.sidebar .badge {
+    margin-left: 5px;
+}

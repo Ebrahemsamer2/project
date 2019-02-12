@@ -40,7 +40,13 @@ $dashboard = "active";
                                         }
                                          ?></td>
                                         <td><?php echo $post['author']; ?></td>
-                                        <td>Edit / Delete</td>
+                                        <td class='action-links'>
+                                        <a class='btn btn-primary btn-sm' href=''>Edit</a>
+                                        <form action="" method='POST'>
+                                            <input type="hidden" name='id' value='$post["id"]'>
+                                            <input type="submit" class='btn btn-danger btn-sm' value='Delete' name='deletepost'>
+                                        </form>
+                                        </td>
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -68,7 +74,13 @@ $dashboard = "active";
                                         <th scope="row"><?php echo $no; ?></th>
                                         <td><?php echo $category['name']; ?></td>
                                         <td><?php echo $category['creater_name']; ?></td>
-                                        <td>Edit / Delete</td>
+                                        <td class='action-links'>
+                                        <a class='btn btn-primary btn-sm' href=''>Edit</a>
+                                        <form action="" method='POST'>
+                                            <input type="hidden" name='id' value='$post["id"]'>
+                                            <input type="submit" class='btn btn-danger btn-sm' value='Delete' name='deletepost'>
+                                        </form>
+                                        </td>
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -98,7 +110,13 @@ $dashboard = "active";
                                         <th scope="row"><?php echo $no; ?></th>
                                         <td><?php echo $category['name']; ?></td>
                                         <td><?php echo $category['creater_name']; ?></td>
-                                        <td>Edit / Delete</td>
+                                        <td class='action-links'>
+                                        <a class='btn btn-primary btn-sm' href=''>Edit</a>
+                                        <form action="" method='POST'>
+                                            <input type="hidden" name='id' value='$post["id"]'>
+                                            <input type="submit" class='btn btn-danger btn-sm' value='Delete' name='deletepost'>
+                                        </form>
+                                        </td>
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -125,7 +143,13 @@ $dashboard = "active";
                                         <th scope="row"><?php echo $no; ?></th>
                                         <td><?php echo $category['name']; ?></td>
                                         <td><?php echo $category['creater_name']; ?></td>
-                                        <td>Edit / Delete</td>
+                                        <td class='action-links'>
+                                        <a class='btn btn-primary btn-sm' href=''>Edit</a>
+                                        <form action="" method='POST'>
+                                            <input type="hidden" name='id' value='$post["id"]'>
+                                            <input type="submit" class='btn btn-danger btn-sm' value='Delete' name='deletepost'>
+                                        </form>
+                                        </td>
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>
