@@ -3,7 +3,9 @@ $page_title = "New Admin";
 include "inc/init.php"; 
 $admins = "active"; ?>
 
-<?php 
+
+
+<?php
     $username = "";
     $email = "";
     $id = "";
@@ -52,17 +54,15 @@ $admins = "active"; ?>
                 if(insert_admin($datetime, $username, $email, $password, $role_type, $image['name'], $created_by)) {
 
                     // send email with default password ( zblog_password )
-
-                    // if(password_verify("zblog_password",$password)) {
-                    //     $send_password = "zblog_password";
-                    //     $content = "You're just Added To Zblog as Admin, Congrats Your default password to login with is 
-                    //     $send_password , Do not forget to change it to stronger one";
-                    //     $subject = "Getting Default Password";
-                    //     $header = "From: Soltan_algaram41@yahoo.com";
-
-                    //     mail("nosa_2013@yahoo.com", $subject, $content, $header);
-                    // } 
                     
+                    if(password_verify("zblog_password",$password)) {
+                        $send_password = "zblog_password";
+                        $content = "You have been added to the site of Zbloog as Adman, congratulations your password is ";
+                        $content .=  $send_password . " you can replace it in your profile at the Admin Panel";
+                        $subject = "Receive your password";
+                        
+                        mail($email,$subject,$content);
+                    }
                     if(! session_id()){
                         session_start();
                     }

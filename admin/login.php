@@ -19,10 +19,10 @@ $page_title = "Admin Login | Zblog";
                 if(password_verify($password, $admin_found['password'])) {
                     $_SESSION['admin_username'] = $admin_found['username'];
                     $_SESSION['admin_email'] = $admin_found['email'];
-                    $_SESSION['id'] = $admin_found['id'];
+                    $_SESSION['admin_id'] = $admin_found['id'];
                     redirect("index.php");
                 }else {
-                    $_SESSION['error'] = "Wrong Password, If you're not remember it press <a href='' class='forgot-password'>forgot my password</a>";
+                    $_SESSION['error'] = "Wrong Password, If you're not remember it press <a style='margin-left:5px;' href='' class='forgot-password'>Forgot my password</a>";
                 }
             }else {
                 if(! session_id()) {

@@ -148,7 +148,7 @@ function get_admins($id = "") {
             $result = $con->prepare($sql);
             $result->bindValue(1, $id, PDO::PARAM_INT);
             $result->execute();
-            return $result->fetch();
+            return $result->fetch(PDO::FETCH_ASSOC);
         }else {
             $result = $con->query($sql);
             return $result;
@@ -262,6 +262,31 @@ function get_comments($approve = "") {
         return array();
     }
 }
+
+// get number of post comments using post id
+function get_post_comments($approve, $id = "") {
+    include "connect.php";
+    if(! empty($id)){
+        $sql = "SELECT * FROM comments WHERE approve = $approve AND post_id = ?";
+    }else {
+        $sql = "SELECT * FROM comments WHERE approve = $approve";
+    }
+    try{
+            $result = $con->prepare($sql);
+            if(! empty($id)){
+                $result->bindValue(1,$id, PDO::PARAM_INT);
+            }
+            $result->execute();
+            return $result->rowCount();
+    }catch(Exception $e) {
+        echo "Error: ". $e->getMessage();
+        return false;
+    }
+}
+
+
+
+// approve unapproved comment
 function approve($id) {
     include "connect.php";
     $sql = "UPDATE comments SET approve = 1 WHERE id = ? ";
@@ -275,6 +300,59 @@ function approve($id) {
     }
 }
 
+
+/* Settings Functions */ 
+
+function get_settings() {
+    include "connect.php";
+    $sql = "SELECT * FROM settings";
+    try {
+        $result = $con->query($sql);
+        return $result;
+    }catch(Exception $e) {
+        echo "Error: ". $e->getMessage();
+        return array();
+    }
+}
+function update_general_settings($name, $tagline, $image = "") {
+    include "connect.php";
+    if(empty($image)) {
+        $sql = "UPDATE settings SET name = ?, tagline = ? ";
+    }else {
+        $sql = "UPDATE settings SET name = ?, tagline = ?, logo = ? ";
+    }
+
+    try {
+        $result = $con->prepare($sql);
+        $result->bindValue(1,$name, PDO::PARAM_STR);
+        $result->bindValue(2,$tagline, PDO::PARAM_STR);
+        if(! empty($image)) {
+            $result->bindValue(3,$image, PDO::PARAM_STR);
+        }
+        return $result->execute();
+    }catch(Exception $e) {
+        echo "Error: ".$e->getMessage();
+        return false;
+    }
+}
+
+function update_posts_settings($hpn, $order, $related, $recent) {
+    include "connect.php";
+    $sql = "UPDATE settings SET home_posts_number = ?, posts_order = ?, related_posts_number = ?, recent_posts_number = ? ";
+    try {
+        $result = $con->prepare($sql);
+        $result->bindValue(1,$hpn, PDO::PARAM_INT);
+        $result->bindValue(2,$order, PDO::PARAM_STR);
+        $result->bindValue(3,$related, PDO::PARAM_INT); 
+        $result->bindValue(4,$recent, PDO::PARAM_INT);
+        
+        return $result->execute();
+    }catch(Exception $e) {
+        echo "Error: ".$e->getMessage();
+        return false;
+    }
+
+}
 /* Global Functions */
 
 function redirect($location) {

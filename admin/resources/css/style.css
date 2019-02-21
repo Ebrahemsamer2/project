@@ -1,5 +1,8 @@
 /* Some Constants */
 
+/* Main colors : ( red: #E74C3C,  blue: #3498DB) */
+
+
 body {
     font-family: 'Lato', sans-serif;
     background: #ffffff;
@@ -27,6 +30,21 @@ hr {
 .forgot-password:hover {
     text-decoration: none;
 }
+
+.site-logo {
+    border-radius: 50%;
+}
+.settings .site-logo {
+    margin-bottom: 10px;
+}
+.tagline {
+    color: #E74C3C;
+    font-weight: bold;
+    font-size: 15px;
+}
+input[type='submit'] {
+    border-radius: 2px;
+}
 /* Navbar Style */
 .navbar {
     padding: 0;
@@ -36,7 +54,7 @@ hr {
 }
 .navbar-light .navbar-brand {
     color: #d8d8d8;
-    margin-left: 10px;
+    margin-left: 50px;
 }
 .navbar-light .navbar-nav .nav-link {
     color: #d8d8d8;
@@ -52,7 +70,7 @@ hr {
     left: -90px;
 }
 .dropdown-menu.brandmenu {
-    left: 30px;
+    left: 60px;
 }
 .dropdown-menu.brandmenu:after {
     font-family: FontAwesome;
@@ -112,6 +130,7 @@ hr {
 }
 .sidebar ul li i {
     font-size: 15px;
+    color: #E74C3C;
 }
 .sidebar ul li a {
     padding: 10px;
@@ -130,8 +149,11 @@ hr {
     background: #444444;
 }
 .sidebar ul li a.active {
-    background: #cacaca;
-    color: #383838;
+    background: #E74C3C;
+    color: #fff;
+}
+.sidebar ul li a.active i {
+    color: #fff;
 }
 
 /* Add New Post Style */
@@ -292,4 +314,24 @@ table tbody td.action-links form {
 }
 .sidebar .badge {
     margin-left: 5px;
+}
+
+
+
+
+/* Settings Style */
+
+.settings h4 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.settings form {
+    margin-left: 50px;
+}
+.settings input[type='submit'] {
+    margin-top: 20px;
+}
+.posts-setting hr{
+    width: 50%;
+    margin: 30px auto;
 }

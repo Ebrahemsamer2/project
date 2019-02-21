@@ -1,7 +1,7 @@
 <?php 
-$page_title = "Admins";
+$page_title = "Comments";
 include "inc/init.php";
-$admins = "active";
+$comments = "active";
 
 ?>
 <div class="container-fluid">

@@ -36,6 +36,7 @@ $posts = "active";
                                 <th scope="col">Title</th>
                                 <th scope="col">Content</th>
                                 <th scope="col">Image</th>
+                                <th scope="col">Comments</th>
                                 <th scope="col">Author</th>
                                 <th scope="col">Actions</th>
                             </tr>
@@ -72,6 +73,15 @@ $posts = "active";
                                 ?></td>
                                 <td>
                                     <img width='100' src="uploads/posts/<?php echo $post['image']; ?>" alt="">
+                                </td>
+                                <td>
+                                    <?php if(get_post_comments(1, $post['id'])) { ?>
+                                        <span class='badge badge-success'><?php echo get_post_comments(1, $post['id']); ?> </span> 
+                                    <?php } ?>
+
+                                    <?php if(get_post_comments(0, $post['id'])) { ?>
+                                        <span style='float: right;' class='badge badge-warning'><?php echo get_post_comments(0, $post['id']); ?> </span> 
+                                    <?php } ?>
                                 </td>
                                 <td><?php echo $post['author']; ?></td>
                                 <td class='action-links'><a href='post.php?id=<?php echo $post["id"]; ?>' class='btn btn-info btn-sm'>Edit</a>
