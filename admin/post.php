@@ -152,7 +152,7 @@ $posts = "active"; ?>
                         echo "</div>";
                     }
                 ?>
-                <h3><?php if(isset( $_GET['id'])) { echo "Edit Post"; } else { echo "Add New Post";}?></h3>
+                <h4><?php if(isset( $_GET['id'])) { echo "Edit Post"; } else { echo "Add New Post";}?></h4>
                  <?php 
                         if(! session_id()){
                             session_start();

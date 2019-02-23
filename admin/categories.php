@@ -97,7 +97,7 @@ $name = "";
                 }
                 ?>
             <div class='categories'>
-                <h3>Categories</h3>
+                <h4>Categories</h4>
                 <?php 
                     if(! empty($error_msg)){
                         echo "<div class='alert alert-danger'>";

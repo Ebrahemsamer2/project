@@ -8,7 +8,7 @@
         <!-- Font Awesome CSS -->
         <link rel="stylesheet" href="resources/css/font-awesome.min.css">
         <!-- GoogleFont CSS -->
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
         <!-- My Own style -->
         <link rel="stylesheet" href="resources/css/style.css">
     </head>

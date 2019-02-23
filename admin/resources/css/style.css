@@ -1,11 +1,11 @@
 /* Some Constants */
 
-/* Main colors : ( red: #E74C3C,  blue: #3498DB) */
+/* Main colors : ( red: #da2310,  blue: #232527) */
 
 
 body {
     font-family: 'Lato', sans-serif;
-    background: #ffffff;
+    background: #f3f3f3;
     padding-top: 40px;
 }
 body.login-style {
@@ -38,12 +38,16 @@ hr {
     margin-bottom: 10px;
 }
 .tagline {
-    color: #E74C3C;
+    color:#da2310;
     font-weight: bold;
     font-size: 15px;
 }
 input[type='submit'] {
     border-radius: 2px;
+}
+
+.clear {
+    clear: both;
 }
 /* Navbar Style */
 .navbar {
@@ -112,6 +116,7 @@ input[type='submit'] {
 }
 
 /* Sidebar Style */
+
 .sidebar {
     border-right: 1px solid #fff;
     position: fixed;
@@ -130,7 +135,7 @@ input[type='submit'] {
 }
 .sidebar ul li i {
     font-size: 15px;
-    color: #E74C3C;
+    color:#da2310;
 }
 .sidebar ul li a {
     padding: 10px;
@@ -149,23 +154,89 @@ input[type='submit'] {
     background: #444444;
 }
 .sidebar ul li a.active {
-    background: #E74C3C;
+    background:#da2310;
     color: #fff;
 }
 .sidebar ul li a.active i {
     color: #fff;
 }
 
+
+/* DashBoard Style */
+.dashboard a {
+    color: #205e9c;
+}
+.dashboard .new-links {
+    background: #fff;
+    padding: 20px;
+}
+.dashboard .new-links a i {
+    color: grey;
+    margin-right: 5px;
+}
+.dashboard .new-links a {
+    display: block;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.dashboard .recent-posts,
+.dashboard .recent-cats {
+    margin-left: 20px;
+    background: #fff;
+    padding: 20px;
+}
+.dashboard .recent-cats {
+    margin-top: 20px;
+}
+.dashboard .recent-posts a,
+.dashboard .recent-cats a {
+    text-decoration: none;
+}
+.dashboard .recent-posts a h6,
+.dashboard .recent-cats a h6 {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.dashboard .counts {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.dashboard .new-links a i {
+    color: #b1afaf;
+}
+.dashboard .counts div div{
+    background: #205e9c;
+    margin: 10px;
+    border-radius: 2px;
+    color:#e2d5d4;
+    padding: 10px;
+}
+.dashboard .counts span{
+    font-size: 25px;
+    font-weight: 300;
+}
+.dashboard .counts span.num{
+    font-size: 30px;
+}
+
+
+
 /* Add New Post Style */
 
 .addnewpost,
 .categories,
-.admin {
+.admin,
+.dashboard {
     margin-top: 50px;
 }
-.addnewpost h3,
-.categories h3,
-.admin h3 {
+.addnewpost h4,
+.categories h4,
+.admin h4,
+.dashboard h4{
     margin-bottom: 20px;
 }
 .addnewpost form input[type='submit'] {
@@ -192,7 +263,7 @@ form p.error {
 /* Posts Style */
 
 .posts {
-    margin-top: 20px;
+    margin-top: 30px;
 }
 .posts table,
 .admins table,
@@ -233,7 +304,7 @@ table tbody td.action-links form {
 /* Admins Style */
 
 .admins h4 {
-    margin-top: 20px;
+    margin-top: 30px;
 }
 .admins table tbody td img {
     border-radius: 50%;
@@ -304,7 +375,7 @@ table tbody td.action-links form {
 /* Comments Style */
 
 .comments h4 {
-    margin-top: 20px;
+    margin-top: 30px;
 }
 .comments .unapproved-comments table tbody td.action-links{
     width: 220px;
@@ -322,7 +393,7 @@ table tbody td.action-links form {
 /* Settings Style */
 
 .settings h4 {
-    margin-top: 20px;
+    margin-top: 30px;
     margin-bottom: 20px;
 }
 .settings form {

@@ -5,6 +5,21 @@
 */
 
 // Categories Functions
+
+function get_categories_number() {
+    include "connect.php";
+    $sql = "SELECT * FROM categories";
+    try{
+        $result = $con->query($sql);
+        $result->execute();
+        return $result->rowCount();
+    }catch(Exception $e) {
+        echo "Error: ".$e->getMessage();
+        return false;
+    }
+}
+
+
 function get_categories($limit = "", $id = "") {
     include "connect.php";
     if($limit) {
@@ -133,8 +148,18 @@ function update_post($title, $content, $category, $tags, $excerpt,$author, $imag
         return false;
     }
 }
-
-
+function get_posts_number() {
+    include "connect.php";
+    $sql = "SELECT * FROM posts";
+    try{
+        $result = $con->query($sql);
+        $result->execute();
+        return $result->rowCount();
+    }catch(Exception $e) {
+        echo "Error: ".$e->getMessage();
+        return false;
+    }
+}
 /* Admin Functions */
 function get_admins($id = "") {
     include "connect.php";
@@ -235,6 +260,19 @@ function get_comment($id) {
     }catch(Exception $e) {
         echo "Error: ". $e->getMessage();
         return "";
+    }
+}
+
+function get_comments_number() {
+    include "connect.php";
+    $sql = "SELECT * FROM comments";
+    try{
+        $result = $con->query($sql);
+        $result->execute();
+        return $result->rowCount();
+    }catch(Exception $e) {
+        echo "Error: ".$e->getMessage();
+        return false;
     }
 }
 
@@ -351,8 +389,21 @@ function update_posts_settings($hpn, $order, $related, $recent) {
         echo "Error: ".$e->getMessage();
         return false;
     }
-
 }
+
+function remove_logo() {
+    include "connect.php";
+    $sql = "UPDATE settings SET logo = '' ";
+
+    try {
+        $result = $con->prepare($sql);
+        return $result->execute();
+    }catch(Exception $e) {
+        echo "Error: ".$e->getMessage();
+        return false;
+    }
+}
+
 /* Global Functions */
 
 function redirect($location) {

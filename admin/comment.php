@@ -107,7 +107,7 @@ $comments = "active"; ?>
         </div>
         <div class="col-sm">
             <div class='addnewpost'>
-                <h3><?php if(isset( $_GET['id'])) { echo "Edit Comment"; } else { echo "Add New Comment";}?></h3>
+                <h4><?php if(isset( $_GET['id'])) { echo "Edit Comment"; } else { echo "Add New Comment";}?></h4>
                  <?php 
                         if(! session_id()){
                             session_start();

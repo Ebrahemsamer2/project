@@ -1,10 +1,8 @@
 <?php 
-$page_title = "Dashboard";
+$page_title = "Dashboard | ZBlog";
 include "inc/init.php";
 $dashboard = "active";
-
 ?>
-
 
 <div class="container-fluid">
     <div class="row">
@@ -12,156 +10,53 @@ $dashboard = "active";
             <?php include "inc/sidebar.php"; ?>
         </div>
         <div class="col-sm">
-            <div class='main-area'>
-
+            <div class='dashboard'>
+                <h4>DashBoard</h4>
                 <div class='row'>
-                    <div class="col-sm-6">
-                        <div class="table-responsive">
-                            <h4>Recent Posts <span>( <span style="color:#1da9b7;">33</span> Post )</span></h4>
-                            <table class="table table-striped table-hover table-dark">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Title</th>
-                                        <th scope="col">Author</th>
-                                        <th scope="col">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $no = 0; ?>
-                                    <?php foreach(get_posts(3) as $post): $no++; ?>
-                                    <tr>
-                                        <th scope="row"><?php echo $no; ?></th>
-                                        <td><?php
-                                        if(strlen($post['title']) > 50) {
-                                            echo substr($post['title'],0,50);
-                                        }else {
-                                            echo $post['title']; 
-                                        }
-                                         ?></td>
-                                        <td><?php echo $post['author']; ?></td>
-                                        <td class='action-links'>
-                                        <a class='btn btn-primary btn-sm' href=''>Edit</a>
-                                        <form action="" method='POST'>
-                                            <input type="hidden" name='id' value='$post["id"]'>
-                                            <input type="submit" class='btn btn-danger btn-sm' value='Delete' name='deletepost'>
-                                        </form>
-                                        </td>
-                                    </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                            
+                    <div class='col-sm-12'>
+                        <div class='counts'>
+                            <div class="row">
+                                <div class='col-sm text-center'>
+                                    <span><span class='num'><?php echo get_posts_number(); ?> </span><br>Posts</span>
+                                </div>
+                                <div class='col-sm text-center'>
+                                    <span><span class='num'><?php echo get_categories_number(); ?> </span><br>Categories</span>
+                                </div>
+                                <div class='col-sm text-center'>
+                                    <span><span class='num'><?php echo get_comments_number(); ?> </span><br>Comments</span>
+                                </div>
+                                <div class='col-sm text-center'>
+                                    <span><span class='num'><?php echo "2300"; ?> </span><br>Users</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="table-responsive">
-                            <h4>Recent Categories <span>( <span style="color:#1da9b7;">44</span> Category )</span></h4>
-                            <table class="table table-striped table-hover table-dark">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Title</th>
-                                        <th scope="col">Creater Name</th>
-                                        <th scope="col">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $no = 0; ?>
-                                    <?php foreach(get_categories(3) as $category): ?>
-                                    <tr>
-                                        <?php $no++; ?>
-                                        <th scope="row"><?php echo $no; ?></th>
-                                        <td><?php echo $category['name']; ?></td>
-                                        <td><?php echo $category['creater_name']; ?></td>
-                                        <td class='action-links'>
-                                        <a class='btn btn-primary btn-sm' href=''>Edit</a>
-                                        <form action="" method='POST'>
-                                            <input type="hidden" name='id' value='$post["id"]'>
-                                            <input type="submit" class='btn btn-danger btn-sm' value='Delete' name='deletepost'>
-                                        </form>
-                                        </td>
-                                    </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
+                    <div class='col-sm-5'>
+                        <div class='new-links'>
+                            <a href="post.php"><i class='fa fa-pencil'></i> Add New Post</a>
+                            <a href="categories.php"><i class='fa fa-list'></i> Add New Category</a>
+                            <a href="comment.php"><i class='fa fa-comments'></i> Add New Comment</a>
+                            <a href="admin.php"><i class='fa fa-user-secret'></i> Add New Admin</a>
+                        </div>
+                    </div>
+                    <div class='col-sm-6'>
+                        <div class='recent-posts'>
+                            <h5>Recent Posts</h5>
+                            <?php foreach(get_posts(3) as $post): ?>
+                            <a href="post.php?id=<?php echo $post['id']; ?>"><h6><?php echo $post['title']; ?></h6></a>
+                            <?php endforeach; ?>
+                        </div>
+                        <div class='recent-cats'>
+                            <h5>Recent Categories</h5>
+                            <?php foreach(get_categories(3) as $category): ?>
+                            <a href="categories.php?id=<?php echo $category['id']; ?>"><h6><?php echo $category['name']; ?></h6></a>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
-
-                <div class='row'>
-                    <div class="col-sm-6">
-                    <div class="table-responsive">
-                            <h4>Recent Categories <span>( <span style="color:#1da9b7;">44</span> Category )</span></h4>
-                            <table class="table table-striped table-hover table-dark">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Title</th>
-                                        <th scope="col">Creater Name</th>
-                                        <th scope="col">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $no = 0; ?>
-                                    <?php foreach(get_categories(3) as $category): ?>
-                                    <tr>
-                                        <?php $no++; ?>
-                                        <th scope="row"><?php echo $no; ?></th>
-                                        <td><?php echo $category['name']; ?></td>
-                                        <td><?php echo $category['creater_name']; ?></td>
-                                        <td class='action-links'>
-                                        <a class='btn btn-primary btn-sm' href=''>Edit</a>
-                                        <form action="" method='POST'>
-                                            <input type="hidden" name='id' value='$post["id"]'>
-                                            <input type="submit" class='btn btn-danger btn-sm' value='Delete' name='deletepost'>
-                                        </form>
-                                        </td>
-                                    </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                    <div class="table-responsive">
-                            <h4>Recent Categories <span>( <span style="color:#1da9b7;">44</span> Category )</span></h4>
-                            <table class="table table-striped table-hover table-dark">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Title</th>
-                                        <th scope="col">Creater Name</th>
-                                        <th scope="col">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $no = 0; ?>
-                                    <?php foreach(get_categories(3) as $category): ?>
-                                    <tr>
-                                        <?php $no++; ?>
-                                        <th scope="row"><?php echo $no; ?></th>
-                                        <td><?php echo $category['name']; ?></td>
-                                        <td><?php echo $category['creater_name']; ?></td>
-                                        <td class='action-links'>
-                                        <a class='btn btn-primary btn-sm' href=''>Edit</a>
-                                        <form action="" method='POST'>
-                                            <input type="hidden" name='id' value='$post["id"]'>
-                                            <input type="submit" class='btn btn-danger btn-sm' value='Delete' name='deletepost'>
-                                        </form>
-                                        </td>
-                                    </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-
             </div>
+            <div><?php include "inc/footer.php"; ?></div>
         </div>
     </div>
 </div>
 
-<?php include "inc/footer.php"; ?>
