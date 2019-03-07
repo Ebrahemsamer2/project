@@ -9,4 +9,4 @@
 	<link rel="stylesheet" href="resources/css/style.css">
 	<link rel="stylesheet" href="resources/css/media_style.css">
 </head>
-<body <?php if($page_title === "Admin Login | Zblog"){echo "class='login-style' ";} ?> >
+<body >

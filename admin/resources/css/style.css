@@ -1,408 +1,571 @@
-/* Some Constants */
 
-/* Main colors : ( red: #da2310,  blue: #232527) */
+/* This is style Admin Style File */
 
+/* #E84C3D, #205e9c*/
+
+/* Global Style */
 
 body {
-    font-family: 'Lato', sans-serif;
-    background: #f3f3f3;
-    padding-top: 40px;
+	padding-top: 40px;
+}
+* {
+	box-sizing: border-box;
 }
 body.login-style {
-    padding: 0;
+	padding: 0;
 }
-h1,h2,h3,h4,h5,h6 {
-    padding: 0;
-    margin: 0;
+.col-sm-2 {
+	padding-left: 0;
 }
-hr {
-    margin-top: 3px;
-    margin-bottom: 3px;
-    border-color: #484848;
+.sidebar .active {
+	background: #205e9c;
 }
-.alert {
-    margin-top: 10px;
-    display: inline-block;
+.sidebar .active:hover {
+	background: #205e9c;
+}
+.sidebar i {
+	color: #c71d1d;
+}
+
+/*  Errors Style */
+.posts .alert,
+.categories .alert,
+.admins .alert,
+.approved-comments .alert,
+.general-settings .alert {
+	margin-top: 10px;
+	display: inline-block;
 }
 .alert-default {
-    color: #b50707;
-}
-.forgot-password:hover {
-    text-decoration: none;
+	color: #d50707;
+} 
+
+h6 {
+	margin: 0;
 }
 
-.site-logo {
-    border-radius: 50%;
+.sidebar .badge-info {
+	margin-top: 2px;
 }
-.settings .site-logo {
-    margin-bottom: 10px;
-}
+
 .tagline {
-    color:#da2310;
-    font-weight: bold;
-    font-size: 15px;
-}
-input[type='submit'] {
-    border-radius: 2px;
-}
-
-.clear {
-    clear: both;
+	color: #E84C3D;
+	margin-left: -20px;
 }
 /* Navbar Style */
 .navbar {
-    padding: 0;
+	padding: 0;
 }
 .bg-dark {
-    background: #232527!important;
+	background: #232527!important;
 }
-.navbar-light .navbar-brand {
-    color: #d8d8d8;
-    margin-left: 50px;
-}
+.navbar-light .navbar-brand,
 .navbar-light .navbar-nav .nav-link {
-    color: #d8d8d8;
-    margin-right: 5px;
-}
-.navbar-expand-lg .navbar-nav .dropdown-menu,
-.dropdown-menu.show {
-    background: #232527;
-    transition: .3s ease-in-out;
-}
-.dropdown-menu {
-    padding: 0;
-    left: -90px;
-}
-.dropdown-menu.brandmenu {
-    left: 60px;
-}
-.dropdown-menu.brandmenu:after {
-    font-family: FontAwesome;
-    content: "\f062";
-    height: 10px;
-    width: 20px;
-    position: absolute;
-    left: 20px;
-    top: -10px; 
-}
-.dropdown-item {
-    color: #d8d8d8;
-}
-.dropdown-item:hover {
-    color: #fff;
-    background: #232527;
-}
-.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-    color: #fff;
-}
-/* .navbar-light .navbar-nav .dropdown-menu {
-     top: 48px; 
-} */
-.navbar-light .navbar-nav .dropdown-menu:after {
-    font-family: FontAwesome;
-    content: "\f062";
-    height: 10px;
-    width: 20px;
-    position: absolute;
-    left: 116px;
-    top: -10px; 
-}
-.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
-    color: #fff;
-}
-.dropdown-toggle.navbar-brand::after {
-    border: 0;
-    content: none;
+	color: #fff;
+	margin-left: 40px;
 }
 
-/* Sidebar Style */
+.logo {
+	border-radius: 50%;
+}
+.navbar-brand.dropdown-toggle::after {
+	content: none;
+}
+.dropdown-menu{
+	padding: 0;
+	background: #232527;
+}
+.dropdown-menu a {
+	color: #fff;
+}
+.dropdown-menu a:hover {
+	background: #232527;
+	color: #fff;
+}
+.brand-drop-down {
+	left: 75px;
+}
+
+/* Admin Sidebar Style */
 
 .sidebar {
-    border-right: 1px solid #fff;
-    position: fixed;
-    padding: 15px;
-    height: 100%;
-    background: #232527;
-    color: #d8d8d8;
-    width: 190px;
-    max-width: 190px;
-}
-.col-sm-2 {
-    padding-left: 0;
+	padding: 15px;
+	background: #232527;
+	position: fixed;
+	height: 100%;
+	width: 190px;
+	max-width: 190px;
 }
 .sidebar ul {
-    margin-top: 20px;
-}
-.sidebar ul li i {
-    font-size: 15px;
-    color:#da2310;
+	margin-top: 30px;
 }
 .sidebar ul li a {
-    padding: 10px;
-    color: #d8d8d8;
-    border: 1px solid #2b2b2b;
-    text-decoration: none;
-    width: 100%;
-    display: block;
-    margin-bottom: 5px;
-    transition: .3s ease-in-out;
-    border-radius: 3px;
+	 border-radius: 3px;
+	text-decoration: none;
+	color: #fff;
+	border: 1px solid #383838;
+	width: 100%;
+	display: block;
+	padding: 10px;
+	margin-bottom: 5px;
+	transition: .3s ease-in-out;
 }
-
+.sidebar ul li i {
+	font-size: 15px;
+}
 .sidebar ul li a:hover {
-    color: #fff;
-    background: #444444;
-}
-.sidebar ul li a.active {
-    background:#da2310;
-    color: #fff;
-}
-.sidebar ul li a.active i {
-    color: #fff;
+	color: #ffffff;
+	background: #484848;
 }
 
 
-/* DashBoard Style */
-.dashboard a {
-    color: #205e9c;
-}
-.dashboard .new-links {
-    background: #fff;
-    padding: 20px;
-}
-.dashboard .new-links a i {
-    color: grey;
-    margin-right: 5px;
-}
-.dashboard .new-links a {
-    display: block;
-    margin-left: 20px;
-    margin-bottom: 10px;
-    text-decoration: none;
-    font-size: 15px;
-}
-
-.dashboard .recent-posts,
-.dashboard .recent-cats {
-    margin-left: 20px;
-    background: #fff;
-    padding: 20px;
-}
-.dashboard .recent-cats {
-    margin-top: 20px;
-}
-.dashboard .recent-posts a,
-.dashboard .recent-cats a {
-    text-decoration: none;
-}
-.dashboard .recent-posts a h6,
-.dashboard .recent-cats a h6 {
-    margin-top: 10px;
-    margin-left: 20px;
-}
-
-.dashboard .counts {
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-.dashboard .new-links a i {
-    color: #b1afaf;
-}
-.dashboard .counts div div{
-    background: #205e9c;
-    margin: 10px;
-    border-radius: 2px;
-    color:#e2d5d4;
-    padding: 10px;
-}
-.dashboard .counts span{
-    font-size: 25px;
-    font-weight: 300;
-}
-.dashboard .counts span.num{
-    font-size: 30px;
-}
+/* Post Style */
 
 
 
-/* Add New Post Style */
-
-.addnewpost,
-.categories,
-.admin,
-.dashboard {
-    margin-top: 50px;
+.posts div table tbody td.action-links,
+.categories div table tbody td.action-links,
+.admins div table tbody td.action-links,
+.approved-comments div table tbody td.action-links {
+	width: 130px;
 }
-.addnewpost h4,
+
+.posts div table tbody td form,
+.categories div table tbody td form,
+.admins div table tbody td form ,
+.approved-comments div table tbody td form,
+.unapproved-comments div table tbody td form {
+	display: inline;
+}
+
+.posts div table tbody td.title {
+	min-width: 200px;
+}
+
+.posts h4,
+.post h4,
 .categories h4,
 .admin h4,
-.dashboard h4{
-    margin-bottom: 20px;
+.admins h4,
+.comment h4,
+.approved-comments h4,
+.unapproved-comments h4 {
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
-.addnewpost form input[type='submit'] {
-    margin-bottom: 10px;
-}
-.main-area div.table-responsive {
-    margin-top: 30px;
-}
-.main-area div.table-responsive h4 {
-    margin-bottom: 20px;
-}
-.main-area div.table-responsive h4 span {
-    font-size: 17px;
-}
-form p.error {
-    display: none;
-    color: red;
-    margin-top: 5px;
-    margin-left: 10px;
-    font-size: 13px;
-    padding: 0;
-}
-
-/* Posts Style */
-
-.posts {
-    margin-top: 30px;
-}
-.posts table,
-.admins table,
-.comments table {
-    margin-top: 20px;
-}
-.posts table tbody tr.hide {
-    transition: .5s ease-in-out;
-    display: none;
-}
-.posts div a.show-more {
-    text-decoration: none;
-    margin: 10px auto;
-    margin-left: 20px;
-    color: #137e9e;
-}
-
-.posts table tbody td {
-    font-size: 15px;
-}
-
-table tbody td.action-links {
-    width: 130px;
-}
-table tbody td.action-links form {
-    display: inline;
-}
-
-/* Categories Style */
-
-.categories > form input[type='submit'] {
-    margin-bottom: 20px;
+.post form input[name='updatepost'],
+.post form input[name='addpost'],
+.categories form input[name='addcategories'] {
+	margin-bottom: 10px;
 }
 
 
 
 
-/* Admins Style */
 
-.admins h4 {
-    margin-top: 30px;
-}
+
+
+/* Admin Style */
+
 .admins table tbody td img {
-    border-radius: 50%;
+	border-radius: 50%;
 }
+
+.error {
+	color: red;
+	margin-top: 5px;
+	margin-left: 10px;
+	font-size: 13px;
+	padding: 0;
+	display: none;
+}
+
 
 /* Login Style */
 
-
-
 .login {
-    background: #1B1D32;
-    width: 100%;
-    height: 100vh;
+	background: #1B1D32;
+	width: 100%;
+	height: 100vh;
 }
+
 .login .login-form {
-    width: 350px;
-    margin: 0 auto;
-    padding-top: 160px;
+	width: 350px;
+	margin: 0 auto;
+	padding-top: 160px;
 }
 .login .login-form h6 {
-    background: #1E2137;
-    padding: 25px;
-    color: grey;
-}
-.login .login-form form{
-    background: #24273E;
-    padding: 20px 25px;
-}
-.login .login-form form input[type='email'],
-.login .login-form form input[type='password']{
-    background: #24273E;
-    border-radius: 0;
-    border: none;
-    border-bottom: 1px solid grey;
-    padding-left: 25px;
-    color: #fff;
-}
-.login .login-form form input[type='email']:focus,
-.login .login-form form input[type='password']:focus {
-    box-shadow: none;
+
+	padding: 25px;
+	background: #1E2137;
+	color: grey;
 }
 .login .login-form form {
-    position: relative;
+
+	padding: 20px 25px;
+	background: #24273E;
+
 }
-.login .login-form form div i {
-    position: absolute;
-    left: 10px;
-    font-size: 15px;
-    color: #6C7573;
-    background: #24273E;
+
+.login .login-form form input[name='email'],
+.login .login-form form input[name='password'] {
+
+	background: #24273E;
+	border: none;
+	border-bottom: 1px solid grey;
+	border-radius: 0;
+	padding-left: 30px;
+	color: #fff;
 }
-.login form div i.fa-envelope {
-    top: 31px;
-    left: 27px;
+.login .login-form form input[name='email']:focus,
+.login .login-form form input[name='password']:focus {
+
+	box-shadow: none;
+
 }
-.login form div i.fa-unlock-alt {
-    left: 28px;
-    top: 87px;
+.login .login-form form div {
+	position: relative;
 }
-.login .login-form form input[name='login'] {
-    background: #FC445F;
-    color: #fff;
-    border-radius: 2px;
-    box-shadow: 0 1px 2px #FC445F;
+.login .login-form form i {
+	position: absolute;
+	top: 12px;
+	left: 3px;
+	color: #6C7573;
+}
+.btn-default {
+	color: #fff;
+	background: #FC445F;
+	border-radius: 2px;
+	box-shadow: 0 0 1px #FC445F;
+}
+.login .login-form a.forgot-password {
+	text-decoration: none;
 }
 
 
 /* Comments Style */
 
-.comments h4 {
-    margin-top: 30px;
-}
-.comments .unapproved-comments table tbody td.action-links{
-    width: 220px;
-}
-.comments .unapproved-comments table tbody td.action-links form {
-    display: inline;
-}
-.sidebar .badge {
-    margin-left: 5px;
+.unapproved-comments div table tbody td.action-links {
+	width: 220px;
 }
 
-
-
+.comments div table tbody td {
+	min-width: 130px;
+}
 
 /* Settings Style */
 
 .settings h4 {
-    margin-top: 30px;
-    margin-bottom: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 .settings form {
-    margin-left: 50px;
+	margin-left: 40px;
 }
-.settings input[type='submit'] {
-    margin-top: 20px;
+.settings form input[type='submit'] {
+	margin-top: 10px;
+	margin-bottom: 5px;
+	border-radius: 2px;
 }
-.posts-setting hr{
-    width: 50%;
-    margin: 30px auto;
+.settings form img.logo {
+	border-radius: 50%;
 }
+
+
+/* Reset Password Style  */
+
+div.reset-password-form {
+	width: 400px;
+	margin: 200px auto;
+} 
+
+
+
+/* Dashboard Style */
+
+.dashboard {
+	margin-top: 50px;
+}
+.dashboard .counts {
+	margin-top: 20px;
+}
+
+.dashboard .counts div div {
+	padding: 15px;
+	font-size: 25px;
+	background : #205e9c;
+	color: #d2cbcb;
+	border-radius: 2px;
+	margin-left: 2px;
+}
+.dashboard .counts div div:nth-child(1) {
+	margin-left: 0;
+}
+.dashboard .counts div div span.num {
+	font-weight: lighter;
+}
+
+.dashboard .hottest-posts,
+.dashboard .recent-posts,
+.dashboard .new-links,
+.dashboard .recent-cats {
+	margin-top: 20px;
+	background: #fff;
+	box-shadow: 0 0 1px #9a9a9a;
+	padding: 10px; 
+	margin-left: -12px;
+}
+
+.dashboard .hottest-posts h5,
+.dashboard .recent-posts h5,
+.dashboard .recent-cats h5 {
+	margin-bottom: 15px;
+}
+.dashboard .new-links a {
+	display: block;
+	margin-left: 10px;
+	margin-bottom: 5px;
+	color: #205e9c;
+} 
+.dashboard .new-links a i {
+	color: #a2a2a2;
+	margin-right: 10px;
+}
+.dashboard .hottest-posts a,
+.dashboard .recent-posts a,
+.dashboard .new-links a ,
+.dashboard .recent-cats a{
+	text-decoration: none;
+}
+.dashboard .hottest-posts a h6,
+.dashboard .recent-posts a h6,
+.dashboard .recent-cats a h6{
+	margin-left: 10px;
+    margin-bottom: 15px;
+    color: #205e9c;
+}
+
+/* Profile Style */
+
+.profile {
+	margin-top: 50px;
+}
+.profile span.role-type {
+	display: block;
+	color: #205e9c;
+	font-weight: bold;
+}
+.profile h6.email {
+	color: grey;
+}
+.profile div div {
+	margin-left: -20px;
+}
+
+.profile .update-info h6,
+.profile .update-password h6 {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.profile .update-info form,
+.profile .update-password form {
+	margin-left: 30px;
+}
+.profile .update-info form .btn-default,
+.profile .update-password form .btn-default {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.profile .update-password {
+	margin-top: 70px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Responsicse Style */
+
+
+/* Dashboard */
+
+
+
+/*
+.container-fluid .row .hide {
+	display: none;
+}
+.container-fluid .row .hide button {
+	width: 150px;
+}
+@media (max-width: 1170px) {
+	.container-fluid .row .col-sm-2 {
+		display: none;
+	}
+	.container-fluid .row .hide {
+		top: 70px;
+		left: 90px;
+		bottom: 20px;
+		display: block;
+		position: absolute;
+		z-index: 100;
+	}
+}
+
+@media (max-width: 768px) {
+	.dashboard {
+		margin-top: 100px;
+	}
+	.dashboard .counts .row div {
+		margin-bottom: 5px;
+		max-width: 40%;
+	}
+	.dashboard .counts .row {
+		margin-left: 70px;
+	}
+	.dashboard h4 {
+		margin-left: 70px;
+	}
+	span.tagline {
+		display: none;
+	}
+	.dashboard .counts .row div:nth-child(1) {
+		margin-left: 2px;
+	}
+}*/
+
+
+
+/* Tabels */
+
+/*@media (max-width: 1200px) {
+
+	td.title,
+	td.content {
+		min-width: 200px;
+	}
+	td.action-links a {
+		width: 55px;
+	}
+	td.action-links form input{
+		margin-top: 5px;
+	}
+	td.post-title {
+		min-width: 250px;
+	}
+	td.comment {
+		min-width: 200px;
+	}
+
+}*/

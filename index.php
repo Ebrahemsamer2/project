@@ -1,3 +1,6 @@
-<?php 
-    echo "This is Home page";
-?>
+
+<?php include "inc/header.php"; ?>
+
+<?php include "inc/navbar.php"; ?>
+
+<?php include "inc/footer.php"; ?>

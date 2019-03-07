@@ -1,62 +1,79 @@
 $(function() {
-    'use strict';
-
-    $(".posts div a.show-more").click(function(e) {
-        e.preventDefault();
-        $(".posts table tbody tr.hide").fadeToggle();
-        if($(".posts div a.show-more").text() == "show more "){
-            console.log($(".posts div a.show-more").text());
-            $(".posts div a.show-more").html("show less <i class='fa fa-angle-up'></i>");
-        }else {
-            $(".posts div a.show-more").html("show more <i class='fa fa-angle-down'></i>");
-        }
-    });
 
 
-    // Post Form Validation
-    $(".addnewpost form").submit(function() {
-        var title,content,tags,excerpt ;
+	//  Post Validation
+	$(".post form").submit(function() {
+		var title, content, excerpt;
 
-        title = $('.addnewpost form input[name="title"]').val();
-        content = $('.addnewpost form textarea').val();
-        tags = $('.addnewpost form input[name="tags"]').val();
-        excerpt = $('.addnewpost form input[name="excerpt"]').val();
+		title = $(".post form input[name='title']").val(); 
+		content = $(".post form textarea").val(); 
+		excerpt = $(".post form input[name='excerpt']").val(); 
 
-        if(title.length < 30 || title.length > 200 ) {
-            $(".addnewpost form .title-error").fadeIn(500);
-            return false;
-        }else {
-            $(".addnewpost form .title-error").fadeOut(500);
-        }
-        if(content.length < 100 || content.length > 10000 ) {
-            $(".addnewpost form .content-error").fadeIn(500);
-            return false;
-        }else {
-            $(".addnewpost form .content-error").fadeOut(500);
-        }
-        if(excerpt.length !== 0) {
-            if(excerpt.length < 100 || excerpt.length > 500 ) {
-                $(".addnewpost form .excerpt-error").fadeIn(500);
-                return false;
-            }else {
-                $(".addnewpost form .excerpt-error").fadeOut(500);
-            }
-        }
-        return true;
-    });
+		if(title.length < 50 || title.length > 200) {
+			$(".post form p.title-error").fadeIn(500);
+			return false;
+		}else {
+			$(".post form p.title-error").fadeOut(500);
+		}
 
-    // Category Form Validation
-    $(".categories form:first").submit(function(){
-        var name;
-        name = $(".categories form input[name='name']").val();
+		if(content.length < 500 || title.length > 10000) {
+			$(".post form p.content-error").fadeIn(500);
+			return false;
+		}else {
+			$(".post form p.content-error").fadeOut(500);
+		}
 
-        if(name.length < 4 || name.length > 50) {
-            $(".categories form .name-error").fadeIn(500);
-            return false; 
-        }else {
-            $(".categories form .name-error").fadeOut(500);
-        }
-        return true;
-    });
+		if(excerpt.length !== 0){
+			if(excerpt.length < 100 || excerpt.length > 500) {
+				$(".post form p.excerpt-error").fadeIn(500);
+				return false;
+			}else {
+				$(".post form p.excerpt-error").fadeOut(500);
+			}
+		}
+		return true;
+	});
 
+
+	//  Admin Validation
+	$(".admin form").submit(function() {
+		var username, email, excerpt;
+
+		username = $(".admin form input[name='username']").val(); 
+		email = $(".admin form input[name='email']").val();
+
+		if(username.length < 5 || username.length > 30) {
+			$(".admin form p.username-error").fadeIn(500);
+			return false;
+		}else {
+			$(".admin form p.username-error").fadeOut(500);
+		}
+
+		if(email.length < 10 || email.length > 100) {
+			$(".admin form p.email-error").fadeIn(500);
+			return false;
+		}else {
+			$(".admin form p.email-error").fadeOut(500);
+		}
+		return true;
+	});
+
+
+
+	//  Comments Validation
+	$(".comment form").submit(function() {
+		var comment;
+
+		comment = $(".comment form textarea").val();
+
+		if(comment.length < 20 || comment.length > 1000) {
+			$(".comment form p.comment-error").fadeIn(500);
+			return false;
+		}else {
+			$(".comment form p.comment-error").fadeOut(500);
+		}
+		return true;
+	});
+
+	
 });
